@@ -2,197 +2,206 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FFGC2K26 | Official Mission Control</title>
 
 <style>
-:root {
-  --bg: #05090e;
-  --card: #0c1720;
-  --line: #1a3d46;
-  --accent: #00efd0;
-  --text: #efffff;
-  --muted: #91aeb6;
+:root{
+  --bg:#05090e;
+  --card:#0c1720;
+  --line:#1a3d46;
+  --accent:#00efd0;
+  --text:#efffff;
+  --muted:#91aeb6;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:radial-gradient(circle at 50% 0%,#0c3036,transparent 45%),var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+}
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#061018f2;
+  border-bottom:1px solid var(--line);
+  padding:17px;
+  text-align:center;
+  color:var(--accent);
+  font-weight:bold;
+  letter-spacing:3px;
+}
+nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:14px;
+  background:#071017;
+}
+button{
+  border:1px solid #166d70;
+  border-radius:8px;
+  background:#09282d;
+  color:var(--accent);
+  padding:13px 17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+nav button{
+  flex:0 0 auto;
+  font-size:11px;
+  padding:11px 15px;
+}
+button.primary{
+  background:var(--accent);
+  color:#00201e;
+  border:0;
+}
+button:disabled{opacity:.5}
+main{
+  max-width:850px;
+  margin:auto;
+  padding:22px 16px 50px;
+}
+section{display:none}
+section.active{display:block}
+.hero{text-align:center;padding:42px 15px}
+.eyebrow{
+  font-size:11px;
+  letter-spacing:3px;
+  color:var(--accent);
+}
+h1{
+  font-size:clamp(35px,9vw,65px);
+  line-height:1;
+  letter-spacing:2px;
+  margin:20px 0;
+  text-shadow:0 0 25px #007d79;
+}
+h2{color:var(--accent);font-size:22px}
+.muted{color:var(--muted);line-height:1.7}
+.card{
+  background:linear-gradient(145deg,#0d2029,#081119);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:23px;
+  margin:18px 0;
+  box-shadow:0 12px 35px #0006;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:14px;
+}
+.grid .card{margin:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{
+  padding:13px 8px;
+  border-bottom:1px solid #1a353e;
+  text-align:left;
+}
+th{color:var(--accent)}
+td:nth-child(3){font-weight:bold}
+.rank{font-size:10px;color:#b5d7da}
+label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin:17px 0 7px;
+}
+select,input{
+  width:100%;
+  padding:14px;
+  background:#040e14;
+  border:1px solid #22555c;
+  border-radius:8px;
+  color:white;
+  font-size:15px;
+}
+.status{min-height:25px;margin-top:15px;font-size:13px}
+.hidden{display:none!important}
+.success{color:#00efab}
+.error{color:#ff7586}
+footer{
+  padding:30px 12px;
+  text-align:center;
+  color:#64858c;
+  font-size:11px;
+  border-top:1px solid var(--line);
 }
 
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
+/* PREMIUM MAINTENANCE SCREEN */
+#maintenanceScreen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
   background:
-    radial-gradient(circle at 50% 0%, #0c3036, transparent 45%),
-    var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
+    radial-gradient(circle at 50% 20%,#143940,transparent 50%),
+    #03070b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
 }
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: #061018f2;
-  border-bottom: 1px solid var(--line);
-  padding: 17px;
-  text-align: center;
-  color: var(--accent);
-  font-weight: bold;
-  letter-spacing: 3px;
+.maintenanceBox{
+  width:100%;
+  max-width:550px;
+  padding:35px 24px;
+  text-align:center;
+  border:1px solid #24646b;
+  border-radius:20px;
+  background:linear-gradient(145deg,#10242b,#071015);
+  box-shadow:0 0 70px #00c6b51b;
 }
-
-nav {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 14px;
-  background: #071017;
+.maintenanceIcon{
+  font-size:54px;
+  margin-bottom:20px;
 }
-
-nav button {
-  flex: 0 0 auto;
-  width: auto;
-  padding: 11px 15px;
-  font-size: 11px;
+.maintenanceTitle{
+  color:var(--accent);
+  font-size:clamp(27px,7vw,43px);
+  letter-spacing:2px;
 }
-
-button {
-  border: 1px solid #166d70;
-  border-radius: 8px;
-  background: #09282d;
-  color: var(--accent);
-  padding: 13px 17px;
-  font-weight: bold;
-  cursor: pointer;
+.maintenanceMessage{
+  color:#b5cbd0;
+  line-height:1.8;
+  overflow-wrap:anywhere;
 }
-
-button.primary {
-  background: var(--accent);
-  color: #00201e;
-  border: none;
-}
-
-button:disabled {
-  opacity: .5;
-}
-
-main {
-  max-width: 850px;
-  margin: auto;
-  padding: 22px 16px 50px;
-}
-
-section { display: none; }
-
-section.active { display: block; }
-
-.hero {
-  text-align: center;
-  padding: 42px 15px;
-}
-
-.eyebrow {
-  font-size: 11px;
-  letter-spacing: 3px;
-  color: var(--accent);
-}
-
-h1 {
-  font-size: clamp(35px, 9vw, 65px);
-  line-height: 1;
-  letter-spacing: 2px;
-  margin: 20px 0;
-  text-shadow: 0 0 25px #007d79;
-}
-
-h2 {
-  color: var(--accent);
-  font-size: 22px;
-}
-
-.muted {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.card {
-  background: linear-gradient(145deg, #0d2029, #081119);
-  border: 1px solid var(--line);
-  border-radius: 15px;
-  padding: 23px;
-  margin: 18px 0;
-  box-shadow: 0 12px 35px #0006;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 14px;
-}
-
-.grid .card { margin: 0; }
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-th, td {
-  padding: 13px 8px;
-  border-bottom: 1px solid #1a353e;
-  text-align: left;
-}
-
-th { color: var(--accent); }
-
-td:nth-child(3) {
-  font-weight: bold;
-}
-
-.rank {
-  font-size: 10px;
-  color: #b5d7da;
-}
-
-label {
-  display: block;
-  color: var(--muted);
-  font-size: 12px;
-  margin: 17px 0 7px;
-}
-
-select, input {
-  width: 100%;
-  padding: 14px;
-  background: #040e14;
-  border: 1px solid #22555c;
-  border-radius: 8px;
-  color: white;
-  font-size: 15px;
-}
-
-.status {
-  min-height: 25px;
-  margin-top: 15px;
-  font-size: 13px;
-}
-
-.hidden { display: none !important; }
-
-.success { color: #00efab; }
-.error { color: #ff7586; }
-
-footer {
-  padding: 30px 12px;
-  text-align: center;
-  color: #64858c;
-  font-size: 11px;
-  border-top: 1px solid var(--line);
+.maintenancePulse{
+  width:10px;
+  height:10px;
+  display:inline-block;
+  border-radius:50%;
+  background:#ff6c79;
+  box-shadow:0 0 15px #ff6c79;
+  margin-right:8px;
 }
 </style>
 </head>
 
 <body>
+
+<!-- MAINTENANCE SCREEN -->
+<div id="maintenanceScreen" class="hidden">
+  <div class="maintenanceBox">
+    <div class="eyebrow">FFGC2K26 // SYSTEM NOTICE</div>
+    <div class="maintenanceIcon">⚙️</div>
+    <h1 class="maintenanceTitle">SYSTEM<br>MAINTENANCE</h1>
+    <p class="muted">
+      <span class="maintenancePulse"></span>
+      TEMPORARILY UNAVAILABLE
+    </p>
+    <p class="maintenanceMessage" id="maintenanceText">
+      Please check back soon.
+    </p>
+    <p class="eyebrow">WE WILL RETURN SOON</p>
+  </div>
+</div>
+
+<div id="publicWebsite" class="hidden">
 
 <header>FFGC2K26 // OFFICIAL CONTROL</header>
 
@@ -208,7 +217,6 @@ footer {
 <main>
 
 <section id="home" class="active">
-
   <div class="hero">
     <div class="eyebrow">THE OFFICIAL FFGC2K26 EXPERIENCE</div>
     <h1>FFGC<br>2K26</h1>
@@ -224,73 +232,40 @@ footer {
   <div class="grid">
     <div class="card">
       <h2>🏆 LIVE RANKINGS</h2>
-      <p class="muted">
-        Every point matters. Every position counts.
-      </p>
-      <button onclick="showPage('leaderboard')">
-        VIEW SCORECARD →
-      </button>
+      <p class="muted">Every point matters. Every position counts.</p>
+      <button onclick="showPage('leaderboard')">VIEW SCORECARD →</button>
     </div>
-
     <div class="card">
       <h2>🎯 CURRENT TASK</h2>
-      <p class="muted">
-        Discover the latest challenge.
-      </p>
-      <button onclick="showPage('task')">
-        VIEW TASK →
-      </button>
+      <p class="muted">Discover the latest challenge.</p>
+      <button onclick="showPage('task')">VIEW TASK →</button>
     </div>
-
     <div class="card">
       <h2>📢 OFFICIAL NOTICES</h2>
-      <p class="muted">
-        Important updates from FFGC2K26.
-      </p>
-      <button onclick="showPage('announcements')">
-        READ NOTICES →
-      </button>
+      <p class="muted">Important updates from FFGC2K26.</p>
+      <button onclick="showPage('announcements')">READ NOTICES →</button>
     </div>
-
     <div class="card">
       <h2>👑 ADMINISTRATION</h2>
-      <p class="muted">
-        Meet the people managing the experience.
-      </p>
-      <button onclick="showPage('administration')">
-        VIEW ADMINS →
-      </button>
+      <p class="muted">Meet the people managing the experience.</p>
+      <button onclick="showPage('administration')">VIEW ADMINS →</button>
     </div>
   </div>
-
 </section>
 
 <section id="leaderboard">
   <h2>🏆 FFGC2K26 RANKS SCORECARD</h2>
-  <p class="muted">
-    Official live leaderboard. Points are loaded
-    from the FFGC2K26 database.
-  </p>
-
+  <p class="muted">Official live leaderboard.</p>
   <div class="card">
-    <div id="leaderboardStatus" class="muted">
-      Loading rankings...
-    </div>
-
+    <div id="leaderboardStatus" class="muted">Loading rankings...</div>
     <div style="overflow-x:auto">
       <table>
         <thead>
-          <tr>
-            <th>#</th>
-            <th>MEMBER</th>
-            <th>POINTS</th>
-            <th>RANK</th>
-          </tr>
+          <tr><th>#</th><th>MEMBER</th><th>POINTS</th><th>RANK</th></tr>
         </thead>
         <tbody id="leaderboardBody"></tbody>
       </table>
     </div>
-
     <br>
     <button onclick="loadLeaderboard()">↻ REFRESH RANKINGS</button>
   </div>
@@ -298,18 +273,13 @@ footer {
 
 <section id="task">
   <h2>🎯 CURRENT TASK</h2>
-
   <div class="card">
     <div class="eyebrow">MISSION STATUS</div>
     <h2>PROJECT BLACKOUT</h2>
+    <p class="muted">THE FORBIDDEN FILE</p>
     <p class="muted">
-      THE FORBIDDEN FILE
+      Classified missions are currently awaiting official activation.
     </p>
-    <p class="muted">
-      Classified missions are currently awaiting
-      official activation.
-    </p>
-
     <button onclick="showPage('blackout')">
       OPEN MISSION CONTROL →
     </button>
@@ -318,7 +288,6 @@ footer {
 
 <section id="announcements">
   <h2>📢 OFFICIAL ANNOUNCEMENTS</h2>
-
   <div class="card">
     <div class="eyebrow">FFGC2K26 NOTICE BOARD</div>
     <h3>WELCOME TO THE NEW CONTROL CENTER</h3>
@@ -327,37 +296,27 @@ footer {
       with live rankings and mission management.
     </p>
   </div>
-
   <div class="card">
     <h3>MORE UPDATES COMING SOON</h3>
-    <p class="muted">
-      Future announcements will appear here.
-    </p>
+    <p class="muted">Future announcements will appear here.</p>
   </div>
 </section>
 
 <section id="administration">
   <h2>👑 FFGC2K26 ADMINISTRATION</h2>
-
   <div class="card">
     <div class="eyebrow">MAIN ADMIN</div>
     <h2>KRISHNA</h2>
-    <p class="muted">
-      FFGC2K26 Management
-    </p>
+    <p class="muted">FFGC2K26 Management</p>
   </div>
-
   <div class="card">
     <div class="eyebrow">CO-ADMINISTRATION</div>
     <h3>NOT ANNOUNCED</h3>
-    <p class="muted">
-      Official co-admin details will be updated here.
-    </p>
+    <p class="muted">Official co-admin details will be updated here.</p>
   </div>
 </section>
 
 <section id="blackout">
-
   <div class="hero">
     <div class="eyebrow">UNKNOWN OPERATOR PRESENTS</div>
     <h1>PROJECT<br>BLACKOUT</h1>
@@ -368,7 +327,6 @@ footer {
   </div>
 
   <div class="card" id="loginCard">
-
     <h2>🔐 CLASSIFIED TEAM ACCESS</h2>
 
     <label>SELECT YOUR TEAM</label>
@@ -385,243 +343,219 @@ footer {
     </select>
 
     <label>TEAM ACCESS PASSWORD</label>
-    <input
-      id="password"
-      type="password"
+    <input id="password" type="password"
       placeholder="ENTER CLASSIFIED PASSWORD"
-      autocomplete="off"
-    >
+      autocomplete="off">
 
     <br><br>
-
-    <button
-      class="primary"
-      id="loginBtn"
-      onclick="login()"
-    >
+    <button class="primary" id="loginBtn" onclick="login()">
       VERIFY ACCESS
     </button>
-
     <div id="loginStatus" class="status"></div>
-
   </div>
 
   <div class="card hidden" id="missionDashboard">
-
     <div class="eyebrow">◉ UNKNOWN OPERATOR</div>
-
     <h2 class="success">ACCESS GRANTED</h2>
-
     <p id="welcomeAgent"></p>
-
     <div class="card">
       <h3>🔒 MISSION CONTROL</h3>
-      <p class="muted">
-        CLASSIFIED FILES CURRENTLY LOCKED.
-      </p>
-      <p class="muted">
-        AWAIT FURTHER TRANSMISSION.
-      </p>
+      <p class="muted">CLASSIFIED FILES CURRENTLY LOCKED.</p>
+      <p class="muted">AWAIT FURTHER TRANSMISSION.</p>
     </div>
-
     <button onclick="logout()">DISCONNECT</button>
-
   </div>
-
 </section>
 
 </main>
 
 <footer>
-  FFGC2K26 © 2026<br>
-  OFFICIAL MISSION CONTROL SYSTEM
+FFGC2K26 © 2026<br>
+OFFICIAL MISSION CONTROL SYSTEM
 </footer>
 
+</div>
+
 <script>
+const SUPABASE_URL="https://wxszhdjmvgkajrklfpwn.supabase.co";
+const SUPABASE_KEY="sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
+const LOGIN_API=SUPABASE_URL+"/functions/v1/blackout-login";
 
-const SUPABASE_URL =
-  "https://wxszhdjmvgkajrklfpwn.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
-
-const LOGIN_API =
-  SUPABASE_URL + "/functions/v1/blackout-login";
-
-const members = {
-  DOMINATORS: [
-    "Krishna", "Viren", "Neha",
-    "Shreya", "Damini", "Pratham"
-  ],
-  THUNDERBOLT: [
-    "Divya", "Disha", "Raj",
-    "Aaradhya", "Vihan", "Kartik"
-  ],
-  SYNDICATE: [
-    "Rathi", "Batman", "Suhani"
-  ]
+const members={
+  DOMINATORS:["Krishna","Viren","Neha","Shreya","Damini","Pratham"],
+  THUNDERBOLT:["Divya","Disha","Raj","Aaradhya","Vihan","Kartik"],
+  SYNDICATE:["Rathi","Batman","Suhani"]
 };
 
-function showPage(page) {
-  document.querySelectorAll("main section")
-    .forEach(section => {
-      section.classList.remove("active");
-    });
+let maintenanceActive=false;
+let gamePaused=false;
+let emergencyLockdown=false;
 
-  document.getElementById(page)
-    .classList.add("active");
-
-  window.scrollTo(0, 0);
-
-  if (page === "leaderboard") {
-    loadLeaderboard();
-  }
-}
-
-function updateMembers() {
-  const team = document.getElementById("team").value;
-  const memberSelect = document.getElementById("member");
-
-  memberSelect.innerHTML =
-    '<option value="">-- SELECT MEMBER --</option>';
-
-  if (!members[team]) return;
-
-  members[team].forEach(name => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    memberSelect.appendChild(option);
-  });
-}
-
-async function loadLeaderboard() {
-  const body = document.getElementById("leaderboardBody");
-  const status = document.getElementById("leaderboardStatus");
-
-  body.innerHTML = "";
-  status.textContent = "Loading live rankings...";
-
-  try {
-    const response = await fetch(
-      SUPABASE_URL +
-      "/rest/v1/ffgc_members?select=member_name,total_points,rank_name&order=total_points.desc,member_name.asc",
+async function checkSystemStatus(){
+  try{
+    const response=await fetch(
+      SUPABASE_URL+"/rest/v1/ffgc_system_control"+
+      "?select=maintenance_mode,game_paused,emergency_lockdown,maintenance_message&id=eq.1",
       {
-        headers: {
-          "apikey": SUPABASE_KEY
-        }
+        headers:{"apikey":SUPABASE_KEY},
+        cache:"no-store"
       }
     );
 
-    if (!response.ok) {
-      throw new Error("Database request failed");
+    if(!response.ok)throw Error("STATUS REQUEST FAILED");
+
+    const data=await response.json();
+    if(!Array.isArray(data)||!data.length)throw Error("STATUS NOT FOUND");
+
+    const s=data[0];
+    maintenanceActive=s.maintenance_mode===true;
+    gamePaused=s.game_paused===true;
+    emergencyLockdown=s.emergency_lockdown===true;
+
+    document.getElementById("maintenanceText").textContent=
+      s.maintenance_message||"Please check back soon.";
+
+    document.getElementById("maintenanceScreen")
+      .classList.toggle("hidden",!maintenanceActive);
+
+    document.getElementById("publicWebsite")
+      .classList.toggle("hidden",maintenanceActive);
+
+    if(maintenanceActive){
+      logout();
     }
 
-    const data = await response.json();
+  }catch(error){
+    console.error("System status check failed:",error);
 
-    status.textContent = "";
+    // Do not mistakenly announce maintenance if status is unavailable.
+    // Show public website, but secure backend enforcement is still required.
+    document.getElementById("maintenanceScreen")
+      .classList.add("hidden");
 
-    if (!Array.isArray(data) || data.length === 0) {
-      status.textContent = "No rankings available.";
-      return;
-    }
-
-    data.forEach((member, index) => {
-      const row = document.createElement("tr");
-
-      const position = document.createElement("td");
-      position.textContent = index + 1;
-
-      const name = document.createElement("td");
-      name.textContent = member.member_name;
-
-      const points = document.createElement("td");
-      points.textContent = member.total_points;
-
-      const rank = document.createElement("td");
-      rank.className = "rank";
-      rank.textContent = member.rank_name;
-
-      row.append(position, name, points, rank);
-      body.appendChild(row);
-    });
-
-  } catch (error) {
-    status.textContent =
-      "Unable to load rankings. Please try again.";
+    document.getElementById("publicWebsite")
+      .classList.remove("hidden");
   }
 }
 
-async function login() {
-  const team = document.getElementById("team").value;
-  const member = document.getElementById("member").value;
-  const password = document.getElementById("password").value;
+function showPage(page){
+  document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(page).classList.add("active");
+  window.scrollTo(0,0);
+  if(page==="leaderboard")loadLeaderboard();
+}
 
-  const status = document.getElementById("loginStatus");
-  const button = document.getElementById("loginBtn");
+function updateMembers(){
+  const team=document.getElementById("team").value;
+  const select=document.getElementById("member");
+  select.innerHTML='<option value="">-- SELECT MEMBER --</option>';
+  if(!members[team])return;
+  members[team].forEach(name=>{
+    const option=document.createElement("option");
+    option.value=name;
+    option.textContent=name;
+    select.appendChild(option);
+  });
+}
 
-  status.className = "status";
+async function loadLeaderboard(){
+  const body=document.getElementById("leaderboardBody");
+  const status=document.getElementById("leaderboardStatus");
+  body.innerHTML="";
+  status.textContent="Loading live rankings...";
 
-  if (!team || !member || !password) {
-    status.textContent = "PLEASE COMPLETE ALL FIELDS";
+  try{
+    const response=await fetch(
+      SUPABASE_URL+"/rest/v1/ffgc_members"+
+      "?select=member_name,total_points,rank_name&order=total_points.desc,member_name.asc",
+      {headers:{"apikey":SUPABASE_KEY},cache:"no-store"}
+    );
+    if(!response.ok)throw Error("DATABASE REQUEST FAILED");
+    const data=await response.json();
+    status.textContent="";
+    if(!data.length){
+      status.textContent="No rankings available.";
+      return;
+    }
+    data.forEach((m,i)=>{
+      const row=document.createElement("tr");
+      [i+1,m.member_name,m.total_points,m.rank_name].forEach((value,index)=>{
+        const td=document.createElement("td");
+        td.textContent=value;
+        if(index===3)td.className="rank";
+        row.appendChild(td);
+      });
+      body.appendChild(row);
+    });
+  }catch(error){
+    status.textContent="Unable to load rankings. Please try again.";
+  }
+}
+
+async function login(){
+  const team=document.getElementById("team").value;
+  const member=document.getElementById("member").value;
+  const password=document.getElementById("password").value;
+  const status=document.getElementById("loginStatus");
+  const button=document.getElementById("loginBtn");
+
+  status.className="status";
+
+  if(!team||!member||!password){
+    status.textContent="PLEASE COMPLETE ALL FIELDS";
     status.classList.add("error");
     return;
   }
 
-  button.disabled = true;
-  status.textContent = "VERIFYING CLASSIFIED CREDENTIALS...";
-
-  try {
-    const response = await fetch(LOGIN_API, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY
-      },
-      body: JSON.stringify({ team, password })
-    });
-
-    const data = await response.json();
-
-    if (response.ok && data.success === true) {
-      document.getElementById("password").value = "";
-
-      document.getElementById("loginCard")
-        .classList.add("hidden");
-
-      document.getElementById("missionDashboard")
-        .classList.remove("hidden");
-
-      document.getElementById("welcomeAgent").textContent =
-        "AGENT " + member.toUpperCase() +
-        " // TEAM " + team;
-
-    } else {
-      status.textContent =
-        "ACCESS DENIED — INVALID CREDENTIALS";
-      status.classList.add("error");
-    }
-
-  } catch (error) {
-    status.textContent = "SERVER CONNECTION FAILED";
+  if(maintenanceActive||emergencyLockdown||gamePaused){
+    status.textContent="MISSION ACCESS TEMPORARILY UNAVAILABLE";
     status.classList.add("error");
+    return;
   }
 
-  button.disabled = false;
+  button.disabled=true;
+  status.textContent="VERIFYING CLASSIFIED CREDENTIALS...";
+
+  try{
+    const response=await fetch(LOGIN_API,{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+        "apikey":SUPABASE_KEY
+      },
+      body:JSON.stringify({team,password})
+    });
+    const data=await response.json();
+
+    if(response.ok&&data.success===true){
+      document.getElementById("password").value="";
+      document.getElementById("loginCard").classList.add("hidden");
+      document.getElementById("missionDashboard").classList.remove("hidden");
+      document.getElementById("welcomeAgent").textContent=
+        "AGENT "+member.toUpperCase()+" // TEAM "+team;
+    }else{
+      status.textContent="ACCESS DENIED — INVALID CREDENTIALS";
+      status.classList.add("error");
+    }
+  }catch(error){
+    status.textContent="SERVER CONNECTION FAILED";
+    status.classList.add("error");
+  }finally{
+    button.disabled=false;
+  }
 }
 
-function logout() {
-  document.getElementById("missionDashboard")
-    .classList.add("hidden");
-
-  document.getElementById("loginCard")
-    .classList.remove("hidden");
-
-  document.getElementById("password").value = "";
-  document.getElementById("loginStatus").textContent = "";
+function logout(){
+  document.getElementById("missionDashboard").classList.add("hidden");
+  document.getElementById("loginCard").classList.remove("hidden");
+  document.getElementById("password").value="";
+  document.getElementById("loginStatus").textContent="";
 }
 
+// Check immediately and then every 15 seconds.
+// Admin panel is a separate page and remains accessible.
+checkSystemStatus();
+setInterval(checkSystemStatus,15000);
 </script>
-
 </body>
 </html>
