@@ -679,7 +679,12 @@ async function reloadAll(){
 
 $('coadminUser').addEventListener('change',loadPermissions);
 
-verify();
+window.addEventListener('load', () => {
+  verify().catch(error => {
+    document.getElementById('authStatus').textContent =
+      'ERROR: ' + error.message;
+  });
+});
 </script>
 
 </body>
