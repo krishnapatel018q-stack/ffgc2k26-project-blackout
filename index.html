@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>PROJECT BLACKOUT | FFGC2K26</title>
 
 <style>
@@ -13,354 +12,325 @@
 
 body {
   margin: 0;
-  background: #030508;
-  color: white;
+  background: #030b10;
+  color: #e8ffff;
   font-family: Arial, sans-serif;
-  text-align: center;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(
-      circle at 50% 25%,
-      #112d40 0%,
-      transparent 55%
-    );
-  pointer-events: none;
+header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #124b55;
+  color: #00f5d4;
+  letter-spacing: 4px;
+  font-size: 14px;
 }
 
 .container {
-  position: relative;
-  z-index: 1;
-  padding: 35px 20px;
-  max-width: 600px;
+  max-width: 480px;
   margin: auto;
+  padding: 30px 20px;
 }
 
-.brand {
-  color: #00eaff;
-  letter-spacing: 5px;
-  font-size: 13px;
-  margin-bottom: 50px;
-}
-
-.lock {
-  font-size: 55px;
-  margin-bottom: 25px;
-  filter: drop-shadow(0 0 15px #00eaff);
+.tag {
+  color: #00f5d4;
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-align: center;
 }
 
 h1 {
-  font-size: clamp(38px, 9vw, 65px);
-  margin: 0;
+  text-align: center;
+  font-size: 40px;
   letter-spacing: 3px;
-  color: #e8faff;
-  text-shadow:
-    0 0 12px #00eaff,
-    0 0 35px #0077ff;
-  animation: glitch 4s infinite;
+  margin-bottom: 8px;
+  text-shadow: 0 0 25px #008f86;
 }
 
 .subtitle {
-  color: #ff334f;
-  letter-spacing: 4px;
+  text-align: center;
+  color: #92adb2;
   font-size: 13px;
-  margin-top: 15px;
+  margin-bottom: 35px;
 }
 
-.line {
-  width: 80%;
-  height: 1px;
-  margin: 35px auto;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #00eaff,
-    transparent
-  );
+.card {
+  background: #071820;
+  border: 1px solid #17505a;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 0 35px #002c30;
 }
 
-.warning {
-  color: #ff4055;
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-.message {
-  color: #b7c9d5;
-  line-height: 1.9;
-  font-size: 15px;
-  margin: 30px 0;
-}
-
-.team-title {
-  color: #00eaff;
-  font-size: 15px;
-  letter-spacing: 3px;
-  margin-bottom: 25px;
-}
-
-.team {
+label {
   display: block;
+  font-size: 12px;
+  color: #91b8be;
+  margin-bottom: 9px;
+  letter-spacing: 1px;
+}
+
+select, input {
   width: 100%;
-  background: #07131e;
-  border: 1px solid #167c99;
+  padding: 14px;
+  margin-bottom: 20px;
+  background: #020d12;
+  border: 1px solid #20616a;
+  border-radius: 7px;
   color: white;
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 8px;
   font-size: 15px;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 16px;
+  background: #00d6ba;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
-  transition: 0.3s;
+  color: #001b1a;
 }
 
-.team:hover {
-  background: #103346;
-  box-shadow: 0 0 20px #00eaff55;
+button:disabled {
+  opacity: 0.5;
+}
+
+.status {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  min-height: 20px;
+}
+
+.success {
+  color: #00f5a0;
+}
+
+.error {
+  color: #ff647c;
 }
 
 .hidden {
   display: none;
 }
 
-input {
-  width: 100%;
-  padding: 17px;
-  margin: 12px 0;
-  background: #07131e;
-  border: 1px solid #167c99;
-  border-radius: 6px;
-  color: white;
-  font-size: 16px;
+.dashboard {
+  margin-top: 25px;
+  padding: 24px;
+  border: 1px solid #00bda7;
+  background: #061c22;
+  border-radius: 14px;
   text-align: center;
 }
 
-button.action {
-  background: #00c9e8;
-  border: none;
-  padding: 16px;
-  width: 100%;
-  margin-top: 15px;
-  color: #001018;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.back {
-  margin-top: 20px;
-  color: #9fb6c5;
-  cursor: pointer;
-}
-
 .operator {
-  margin-top: 35px;
-  border: 1px solid #71303a;
-  background: #14090e;
-  padding: 22px;
-  border-radius: 8px;
-}
-
-.operator h3 {
-  color: #ff4055;
-  letter-spacing: 3px;
-}
-
-.operator p {
-  color: #c4aeb3;
-  line-height: 1.8;
-}
-
-.footer {
-  margin-top: 60px;
-  font-size: 10px;
-  color: #627480;
+  font-size: 12px;
   letter-spacing: 2px;
+  color: #00f5d4;
 }
 
-@keyframes glitch {
-  0%, 95%, 100% {
-    transform: translate(0);
-  }
-  96% {
-    transform: translate(2px, -1px);
-  }
-  97% {
-    transform: translate(-2px, 1px);
-  }
-  98% {
-    transform: translate(1px, 2px);
-  }
+.mission {
+  padding: 18px;
+  background: #031116;
+  border: 1px dashed #23616a;
+  border-radius: 10px;
+  margin-top: 20px;
+  color: #9ab8bd;
+}
+
+footer {
+  text-align: center;
+  padding: 35px 10px;
+  color: #45676e;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 </style>
 </head>
 
 <body>
 
+<header>FFGC2K26 // CLASSIFIED ACCESS</header>
+
 <div class="container">
 
-  <div class="brand">
-    FFGC2K26 PRESENTS
-  </div>
-
-  <div class="lock">🔒</div>
+  <p class="tag">UNKNOWN OPERATOR PRESENTS</p>
 
   <h1>PROJECT<br>BLACKOUT</h1>
 
-  <div class="subtitle">
-    THE FORBIDDEN FILE
-  </div>
+  <p class="subtitle">
+    THE FORBIDDEN FILE<br>
+    Every secret has a price.
+  </p>
 
-  <div class="line"></div>
+  <div class="card" id="loginCard">
 
-  <div class="warning">
-    ⚠ CLASSIFIED ACCESS ⚠
-  </div>
+    <label>SELECT YOUR TEAM</label>
+    <select id="team" onchange="updateMembers()">
+      <option value="">-- SELECT TEAM --</option>
+      <option value="DOMINATORS">DOMINATORS</option>
+      <option value="THUNDERBOLT">THUNDERBOLT</option>
+      <option value="SYNDICATE">SYNDICATE</option>
+    </select>
 
-  <div class="message">
-    THREE TEAMS.<br>
-    THREE DAYS.<br>
-    ONE DARK SECRET.<br><br>
+    <label>SELECT YOUR IDENTITY</label>
+    <select id="member">
+      <option value="">-- SELECT MEMBER --</option>
+    </select>
 
-    Every decision has a consequence.<br>
-    Every mistake has a price.
-  </div>
-
-  <div id="selection">
-
-    <div class="team-title">
-      SELECT YOUR TEAM
-    </div>
-
-    <button class="team"
-      onclick="selectTeam('DOMINATORS')">
-      TEAM DOMINATORS
-    </button>
-
-    <button class="team"
-      onclick="selectTeam('THUNDERBOLT')">
-      TEAM THUNDERBOLT
-    </button>
-
-    <button class="team"
-      onclick="selectTeam('SYNDICATE')">
-      TEAM SYNDICATE
-    </button>
-
-  </div>
-
-  <div id="login" class="hidden">
-
-    <div class="team-title" id="teamName">
-    </div>
-
-    <p class="warning">
-      AUTHORIZATION REQUIRED
-    </p>
-
+    <label>ENTER TEAM ACCESS CODE</label>
     <input
-      type="text"
-      id="member"
-      placeholder="ENTER YOUR NAME"
+      id="password"
+      type="password"
+      placeholder="CLASSIFIED PASSWORD"
       autocomplete="off"
     >
 
-    <input
-      type="password"
-      id="password"
-      placeholder="ENTER SECRET ACCESS CODE"
-    >
-
-    <button class="action" onclick="access()">
-      REQUEST ACCESS
+    <button id="loginBtn" onclick="login()">
+      VERIFY ACCESS
     </button>
 
-    <div class="back" onclick="goBack()">
-      ← RETURN TO TEAM SELECTION
+    <div id="status" class="status"></div>
+
+  </div>
+
+  <div id="dashboard" class="dashboard hidden">
+
+    <div class="operator">◉ UNKNOWN OPERATOR</div>
+
+    <h2>ACCESS GRANTED</h2>
+
+    <p id="welcome"></p>
+
+    <div class="mission">
+      <strong>MISSION CONTROL</strong>
+      <p>CLASSIFIED FILES CURRENTLY LOCKED</p>
+      <p>AWAIT FURTHER TRANSMISSION.</p>
     </div>
 
-    <p id="status" class="warning"></p>
-
-  </div>
-
-  <div class="operator">
-
-    <h3>UNKNOWN OPERATOR</h3>
-
-    <p>
-      "If you are reading this message,
-      the protocol has already begun."
-      <br><br>
-      "Trust nothing.<br>
-      Question everything."
+    <p style="font-size:11px;color:#789ba1;margin-top:20px">
+      YOUR ACTIONS WILL DETERMINE YOUR TEAM'S FATE.
     </p>
 
-  </div>
+    <button onclick="logout()">DISCONNECT</button>
 
-  <div class="footer">
-    FFGC2K26 • RESTRICTED SYSTEM<br><br>
-    PROJECT BLACKOUT © 2026
   </div>
 
 </div>
 
+<footer>FFGC2K26 © 2026 | PROJECT BLACKOUT</footer>
+
 <script>
 
-let selectedTeam = "";
+const API_URL =
+  "https://wxszhdjmvgkajrklfpwn.supabase.co/functions/v1/blackout-login";
 
-function selectTeam(team) {
-  selectedTeam = team;
+const members = {
+  DOMINATORS: [
+    "Krishna", "Viren", "Neha",
+    "Shreya", "Damini", "Pratham"
+  ],
+  THUNDERBOLT: [
+    "Divya", "Disha", "Raj",
+    "Aarav", "Vihan", "Kartik"
+  ],
+  SYNDICATE: [
+    "Rathi", "Batman", "Suhani"
+  ]
+};
 
-  document.getElementById("selection")
-    .classList.add("hidden");
+function updateMembers() {
+  const team = document.getElementById("team").value;
+  const memberSelect = document.getElementById("member");
 
-  document.getElementById("login")
-    .classList.remove("hidden");
+  memberSelect.innerHTML =
+    '<option value="">-- SELECT MEMBER --</option>';
 
-  document.getElementById("teamName")
-    .innerText = "TEAM " + team;
+  if (!members[team]) return;
 
-  document.getElementById("status")
-    .innerText = "";
+  members[team].forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    memberSelect.appendChild(option);
+  });
 }
 
-function goBack() {
-  document.getElementById("login")
-    .classList.add("hidden");
+async function login() {
 
-  document.getElementById("selection")
-    .classList.remove("hidden");
-}
+  const team = document.getElementById("team").value;
+  const member = document.getElementById("member").value;
+  const password = document.getElementById("password").value;
 
-function access() {
+  const status = document.getElementById("status");
+  const button = document.getElementById("loginBtn");
 
-  const member =
-    document.getElementById("member").value.trim();
+  status.className = "status";
 
-  const password =
-    document.getElementById("password").value;
-
-  const status =
-    document.getElementById("status");
-
-  if (!member || !password) {
-    status.innerText =
-      "⚠ ALL FIELDS ARE REQUIRED";
+  if (!team || !member || !password) {
+    status.textContent = "PLEASE COMPLETE ALL FIELDS";
+    status.classList.add("error");
     return;
   }
 
-  status.innerText =
-    "SYSTEM LOCKED — AUTHENTICATION SERVER PENDING";
+  button.disabled = true;
+  status.textContent = "VERIFYING CLASSIFIED CREDENTIALS...";
 
-  // Secure authentication will be added
-  // through the backend in the next stage.
-  // No password is checked or stored here.
+  try {
+
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        team: team,
+        password: password
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success === true) {
+
+      document.getElementById("password").value = "";
+
+      document.getElementById("loginCard")
+        .classList.add("hidden");
+
+      document.getElementById("dashboard")
+        .classList.remove("hidden");
+
+      document.getElementById("welcome").textContent =
+        "AGENT " + member.toUpperCase() +
+        " // TEAM " + team;
+
+    } else {
+      status.textContent = "ACCESS DENIED — INVALID CREDENTIALS";
+      status.classList.add("error");
+    }
+
+  } catch (error) {
+    status.textContent = "SERVER CONNECTION FAILED";
+    status.classList.add("error");
+  }
+
+  button.disabled = false;
+}
+
+function logout() {
+  document.getElementById("dashboard")
+    .classList.add("hidden");
+
+  document.getElementById("loginCard")
+    .classList.remove("hidden");
+
+  document.getElementById("password").value = "";
+  document.getElementById("status").textContent = "";
 }
 
 </script>
