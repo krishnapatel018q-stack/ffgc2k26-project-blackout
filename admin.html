@@ -223,10 +223,10 @@ Keep the previous working admin panel backed up.
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const URL='https://wxszhdjmvgkajrklfpwn.supabase.co';
+const SUPABASE_URL='https://wxszhdjmvgkajrklfpwn.supabase.co';
 const KEY='sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3';
 
-const db=window.supabase.createClient(URL,KEY);
+const db=window.supabase.createClient(SUPABASE_URL,KEY);
 const $=id=>document.getElementById(id);
 
 let notices=[],tasks=[];
