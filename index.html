@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PROJECT BLACKOUT | FFGC2K26</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #030508;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 25%,
+      #112d40 0%,
+      transparent 55%
+    );
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  padding: 35px 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.brand {
+  color: #00eaff;
+  letter-spacing: 5px;
+  font-size: 13px;
+  margin-bottom: 50px;
+}
+
+.lock {
+  font-size: 55px;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 0 15px #00eaff);
+}
+
+h1 {
+  font-size: clamp(38px, 9vw, 65px);
+  margin: 0;
+  letter-spacing: 3px;
+  color: #e8faff;
+  text-shadow:
+    0 0 12px #00eaff,
+    0 0 35px #0077ff;
+  animation: glitch 4s infinite;
+}
+
+.subtitle {
+  color: #ff334f;
+  letter-spacing: 4px;
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.line {
+  width: 80%;
+  height: 1px;
+  margin: 35px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #00eaff,
+    transparent
+  );
+}
+
+.warning {
+  color: #ff4055;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.message {
+  color: #b7c9d5;
+  line-height: 1.9;
+  font-size: 15px;
+  margin: 30px 0;
+}
+
+.team-title {
+  color: #00eaff;
+  font-size: 15px;
+  letter-spacing: 3px;
+  margin-bottom: 25px;
+}
+
+.team {
+  display: block;
+  width: 100%;
+  background: #07131e;
+  border: 1px solid #167c99;
+  color: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  font-size: 15px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.team:hover {
+  background: #103346;
+  box-shadow: 0 0 20px #00eaff55;
+}
+
+.hidden {
+  display: none;
+}
+
+input {
+  width: 100%;
+  padding: 17px;
+  margin: 12px 0;
+  background: #07131e;
+  border: 1px solid #167c99;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+
+button.action {
+  background: #00c9e8;
+  border: none;
+  padding: 16px;
+  width: 100%;
+  margin-top: 15px;
+  color: #001018;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.back {
+  margin-top: 20px;
+  color: #9fb6c5;
+  cursor: pointer;
+}
+
+.operator {
+  margin-top: 35px;
+  border: 1px solid #71303a;
+  background: #14090e;
+  padding: 22px;
+  border-radius: 8px;
+}
+
+.operator h3 {
+  color: #ff4055;
+  letter-spacing: 3px;
+}
+
+.operator p {
+  color: #c4aeb3;
+  line-height: 1.8;
+}
+
+.footer {
+  margin-top: 60px;
+  font-size: 10px;
+  color: #627480;
+  letter-spacing: 2px;
+}
+
+@keyframes glitch {
+  0%, 95%, 100% {
+    transform: translate(0);
+  }
+  96% {
+    transform: translate(2px, -1px);
+  }
+  97% {
+    transform: translate(-2px, 1px);
+  }
+  98% {
+    transform: translate(1px, 2px);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="brand">
+    FFGC2K26 PRESENTS
+  </div>
+
+  <div class="lock">🔒</div>
+
+  <h1>PROJECT<br>BLACKOUT</h1>
+
+  <div class="subtitle">
+    THE FORBIDDEN FILE
+  </div>
+
+  <div class="line"></div>
+
+  <div class="warning">
+    ⚠ CLASSIFIED ACCESS ⚠
+  </div>
+
+  <div class="message">
+    THREE TEAMS.<br>
+    THREE DAYS.<br>
+    ONE DARK SECRET.<br><br>
+
+    Every decision has a consequence.<br>
+    Every mistake has a price.
+  </div>
+
+  <div id="selection">
+
+    <div class="team-title">
+      SELECT YOUR TEAM
+    </div>
+
+    <button class="team"
+      onclick="selectTeam('DOMINATORS')">
+      TEAM DOMINATORS
+    </button>
+
+    <button class="team"
+      onclick="selectTeam('THUNDERBOLT')">
+      TEAM THUNDERBOLT
+    </button>
+
+    <button class="team"
+      onclick="selectTeam('SYNDICATE')">
+      TEAM SYNDICATE
+    </button>
+
+  </div>
+
+  <div id="login" class="hidden">
+
+    <div class="team-title" id="teamName">
+    </div>
+
+    <p class="warning">
+      AUTHORIZATION REQUIRED
+    </p>
+
+    <input
+      type="text"
+      id="member"
+      placeholder="ENTER YOUR NAME"
+      autocomplete="off"
+    >
+
+    <input
+      type="password"
+      id="password"
+      placeholder="ENTER SECRET ACCESS CODE"
+    >
+
+    <button class="action" onclick="access()">
+      REQUEST ACCESS
+    </button>
+
+    <div class="back" onclick="goBack()">
+      ← RETURN TO TEAM SELECTION
+    </div>
+
+    <p id="status" class="warning"></p>
+
+  </div>
+
+  <div class="operator">
+
+    <h3>UNKNOWN OPERATOR</h3>
+
+    <p>
+      "If you are reading this message,
+      the protocol has already begun."
+      <br><br>
+      "Trust nothing.<br>
+      Question everything."
+    </p>
+
+  </div>
+
+  <div class="footer">
+    FFGC2K26 • RESTRICTED SYSTEM<br><br>
+    PROJECT BLACKOUT © 2026
+  </div>
+
+</div>
+
+<script>
+
+let selectedTeam = "";
+
+function selectTeam(team) {
+  selectedTeam = team;
+
+  document.getElementById("selection")
+    .classList.add("hidden");
+
+  document.getElementById("login")
+    .classList.remove("hidden");
+
+  document.getElementById("teamName")
+    .innerText = "TEAM " + team;
+
+  document.getElementById("status")
+    .innerText = "";
+}
+
+function goBack() {
+  document.getElementById("login")
+    .classList.add("hidden");
+
+  document.getElementById("selection")
+    .classList.remove("hidden");
+}
+
+function access() {
+
+  const member =
+    document.getElementById("member").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const status =
+    document.getElementById("status");
+
+  if (!member || !password) {
+    status.innerText =
+      "⚠ ALL FIELDS ARE REQUIRED";
+    return;
+  }
+
+  status.innerText =
+    "SYSTEM LOCKED — AUTHENTICATION SERVER PENDING";
+
+  // Secure authentication will be added
+  // through the backend in the next stage.
+  // No password is checked or stored here.
+}
+
+</script>
+
+</body>
+</html>
