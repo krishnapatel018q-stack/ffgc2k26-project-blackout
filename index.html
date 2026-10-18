@@ -2,172 +2,374 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PROJECT BLACKOUT | FFGC2K26</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FFGC2K26 | Official Mission Control</title>
 
 <style>
-* {
-  box-sizing: border-box;
+:root {
+  --bg: #05090e;
+  --card: #0c1720;
+  --line: #1a3d46;
+  --accent: #00efd0;
+  --text: #efffff;
+  --muted: #91aeb6;
 }
+
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: #030b10;
-  color: #e8ffff;
+  background:
+    radial-gradient(circle at 50% 0%, #0c3036, transparent 45%),
+    var(--bg);
+  color: var(--text);
   font-family: Arial, sans-serif;
   min-height: 100vh;
 }
 
 header {
-  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #061018f2;
+  border-bottom: 1px solid var(--line);
+  padding: 17px;
   text-align: center;
-  border-bottom: 1px solid #124b55;
-  color: #00f5d4;
-  letter-spacing: 4px;
-  font-size: 14px;
-}
-
-.container {
-  max-width: 480px;
-  margin: auto;
-  padding: 30px 20px;
-}
-
-.tag {
-  color: #00f5d4;
+  color: var(--accent);
+  font-weight: bold;
   letter-spacing: 3px;
+}
+
+nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 14px;
+  background: #071017;
+}
+
+nav button {
+  flex: 0 0 auto;
+  width: auto;
+  padding: 11px 15px;
   font-size: 11px;
+}
+
+button {
+  border: 1px solid #166d70;
+  border-radius: 8px;
+  background: #09282d;
+  color: var(--accent);
+  padding: 13px 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.primary {
+  background: var(--accent);
+  color: #00201e;
+  border: none;
+}
+
+button:disabled {
+  opacity: .5;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 22px 16px 50px;
+}
+
+section { display: none; }
+
+section.active { display: block; }
+
+.hero {
   text-align: center;
+  padding: 42px 15px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--accent);
 }
 
 h1 {
-  text-align: center;
-  font-size: 40px;
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-  text-shadow: 0 0 25px #008f86;
+  font-size: clamp(35px, 9vw, 65px);
+  line-height: 1;
+  letter-spacing: 2px;
+  margin: 20px 0;
+  text-shadow: 0 0 25px #007d79;
 }
 
-.subtitle {
-  text-align: center;
-  color: #92adb2;
-  font-size: 13px;
-  margin-bottom: 35px;
+h2 {
+  color: var(--accent);
+  font-size: 22px;
+}
+
+.muted {
+  color: var(--muted);
+  line-height: 1.7;
 }
 
 .card {
-  background: #071820;
-  border: 1px solid #17505a;
-  border-radius: 14px;
-  padding: 24px;
-  box-shadow: 0 0 35px #002c30;
+  background: linear-gradient(145deg, #0d2029, #081119);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  padding: 23px;
+  margin: 18px 0;
+  box-shadow: 0 12px 35px #0006;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.grid .card { margin: 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 13px 8px;
+  border-bottom: 1px solid #1a353e;
+  text-align: left;
+}
+
+th { color: var(--accent); }
+
+td:nth-child(3) {
+  font-weight: bold;
+}
+
+.rank {
+  font-size: 10px;
+  color: #b5d7da;
 }
 
 label {
   display: block;
+  color: var(--muted);
   font-size: 12px;
-  color: #91b8be;
-  margin-bottom: 9px;
-  letter-spacing: 1px;
+  margin: 17px 0 7px;
 }
 
 select, input {
   width: 100%;
   padding: 14px;
-  margin-bottom: 20px;
-  background: #020d12;
-  border: 1px solid #20616a;
-  border-radius: 7px;
+  background: #040e14;
+  border: 1px solid #22555c;
+  border-radius: 8px;
   color: white;
   font-size: 15px;
-  outline: none;
-}
-
-button {
-  width: 100%;
-  padding: 16px;
-  background: #00d6ba;
-  border: none;
-  border-radius: 7px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  cursor: pointer;
-  color: #001b1a;
-}
-
-button:disabled {
-  opacity: 0.5;
 }
 
 .status {
-  margin-top: 18px;
-  text-align: center;
+  min-height: 25px;
+  margin-top: 15px;
   font-size: 13px;
-  min-height: 20px;
 }
 
-.success {
-  color: #00f5a0;
-}
+.hidden { display: none !important; }
 
-.error {
-  color: #ff647c;
-}
-
-.hidden {
-  display: none;
-}
-
-.dashboard {
-  margin-top: 25px;
-  padding: 24px;
-  border: 1px solid #00bda7;
-  background: #061c22;
-  border-radius: 14px;
-  text-align: center;
-}
-
-.operator {
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: #00f5d4;
-}
-
-.mission {
-  padding: 18px;
-  background: #031116;
-  border: 1px dashed #23616a;
-  border-radius: 10px;
-  margin-top: 20px;
-  color: #9ab8bd;
-}
+.success { color: #00efab; }
+.error { color: #ff7586; }
 
 footer {
+  padding: 30px 12px;
   text-align: center;
-  padding: 35px 10px;
-  color: #45676e;
-  font-size: 10px;
-  letter-spacing: 2px;
+  color: #64858c;
+  font-size: 11px;
+  border-top: 1px solid var(--line);
 }
 </style>
 </head>
 
 <body>
 
-<header>FFGC2K26 // CLASSIFIED ACCESS</header>
+<header>FFGC2K26 // OFFICIAL CONTROL</header>
 
-<div class="container">
+<nav>
+  <button onclick="showPage('home')">🏠 HOME</button>
+  <button onclick="showPage('leaderboard')">🏆 RANKINGS</button>
+  <button onclick="showPage('task')">🎯 CURRENT TASK</button>
+  <button onclick="showPage('announcements')">📢 NOTICES</button>
+  <button onclick="showPage('administration')">👑 ADMINS</button>
+  <button onclick="showPage('blackout')">🔐 BLACKOUT</button>
+</nav>
 
-  <p class="tag">UNKNOWN OPERATOR PRESENTS</p>
+<main>
 
-  <h1>PROJECT<br>BLACKOUT</h1>
+<section id="home" class="active">
 
-  <p class="subtitle">
-    THE FORBIDDEN FILE<br>
-    Every secret has a price.
+  <div class="hero">
+    <div class="eyebrow">THE OFFICIAL FFGC2K26 EXPERIENCE</div>
+    <h1>FFGC<br>2K26</h1>
+    <p class="muted">
+      ONE GROUP. THREE TEAMS.<br>
+      UNLIMITED POSSIBILITIES.
+    </p>
+    <button class="primary" onclick="showPage('blackout')">
+      ENTER PROJECT BLACKOUT
+    </button>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>🏆 LIVE RANKINGS</h2>
+      <p class="muted">
+        Every point matters. Every position counts.
+      </p>
+      <button onclick="showPage('leaderboard')">
+        VIEW SCORECARD →
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>🎯 CURRENT TASK</h2>
+      <p class="muted">
+        Discover the latest challenge.
+      </p>
+      <button onclick="showPage('task')">
+        VIEW TASK →
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>📢 OFFICIAL NOTICES</h2>
+      <p class="muted">
+        Important updates from FFGC2K26.
+      </p>
+      <button onclick="showPage('announcements')">
+        READ NOTICES →
+      </button>
+    </div>
+
+    <div class="card">
+      <h2>👑 ADMINISTRATION</h2>
+      <p class="muted">
+        Meet the people managing the experience.
+      </p>
+      <button onclick="showPage('administration')">
+        VIEW ADMINS →
+      </button>
+    </div>
+  </div>
+
+</section>
+
+<section id="leaderboard">
+  <h2>🏆 FFGC2K26 RANKS SCORECARD</h2>
+  <p class="muted">
+    Official live leaderboard. Points are loaded
+    from the FFGC2K26 database.
   </p>
 
+  <div class="card">
+    <div id="leaderboardStatus" class="muted">
+      Loading rankings...
+    </div>
+
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>MEMBER</th>
+            <th>POINTS</th>
+            <th>RANK</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+
+    <br>
+    <button onclick="loadLeaderboard()">↻ REFRESH RANKINGS</button>
+  </div>
+</section>
+
+<section id="task">
+  <h2>🎯 CURRENT TASK</h2>
+
+  <div class="card">
+    <div class="eyebrow">MISSION STATUS</div>
+    <h2>PROJECT BLACKOUT</h2>
+    <p class="muted">
+      THE FORBIDDEN FILE
+    </p>
+    <p class="muted">
+      Classified missions are currently awaiting
+      official activation.
+    </p>
+
+    <button onclick="showPage('blackout')">
+      OPEN MISSION CONTROL →
+    </button>
+  </div>
+</section>
+
+<section id="announcements">
+  <h2>📢 OFFICIAL ANNOUNCEMENTS</h2>
+
+  <div class="card">
+    <div class="eyebrow">FFGC2K26 NOTICE BOARD</div>
+    <h3>WELCOME TO THE NEW CONTROL CENTER</h3>
+    <p class="muted">
+      The official FFGC2K26 website is being upgraded
+      with live rankings and mission management.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>MORE UPDATES COMING SOON</h3>
+    <p class="muted">
+      Future announcements will appear here.
+    </p>
+  </div>
+</section>
+
+<section id="administration">
+  <h2>👑 FFGC2K26 ADMINISTRATION</h2>
+
+  <div class="card">
+    <div class="eyebrow">MAIN ADMIN</div>
+    <h2>KRISHNA</h2>
+    <p class="muted">
+      FFGC2K26 Management
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="eyebrow">CO-ADMINISTRATION</div>
+    <h3>NOT ANNOUNCED</h3>
+    <p class="muted">
+      Official co-admin details will be updated here.
+    </p>
+  </div>
+</section>
+
+<section id="blackout">
+
+  <div class="hero">
+    <div class="eyebrow">UNKNOWN OPERATOR PRESENTS</div>
+    <h1>PROJECT<br>BLACKOUT</h1>
+    <p class="muted">
+      THE FORBIDDEN FILE<br>
+      EVERY SECRET HAS A PRICE.
+    </p>
+  </div>
+
   <div class="card" id="loginCard">
+
+    <h2>🔐 CLASSIFIED TEAM ACCESS</h2>
 
     <label>SELECT YOUR TEAM</label>
     <select id="team" onchange="updateMembers()">
@@ -182,52 +384,69 @@ footer {
       <option value="">-- SELECT MEMBER --</option>
     </select>
 
-    <label>ENTER TEAM ACCESS CODE</label>
+    <label>TEAM ACCESS PASSWORD</label>
     <input
       id="password"
       type="password"
-      placeholder="CLASSIFIED PASSWORD"
+      placeholder="ENTER CLASSIFIED PASSWORD"
       autocomplete="off"
     >
 
-    <button id="loginBtn" onclick="login()">
+    <br><br>
+
+    <button
+      class="primary"
+      id="loginBtn"
+      onclick="login()"
+    >
       VERIFY ACCESS
     </button>
 
-    <div id="status" class="status"></div>
+    <div id="loginStatus" class="status"></div>
 
   </div>
 
-  <div id="dashboard" class="dashboard hidden">
+  <div class="card hidden" id="missionDashboard">
 
-    <div class="operator">◉ UNKNOWN OPERATOR</div>
+    <div class="eyebrow">◉ UNKNOWN OPERATOR</div>
 
-    <h2>ACCESS GRANTED</h2>
+    <h2 class="success">ACCESS GRANTED</h2>
 
-    <p id="welcome"></p>
+    <p id="welcomeAgent"></p>
 
-    <div class="mission">
-      <strong>MISSION CONTROL</strong>
-      <p>CLASSIFIED FILES CURRENTLY LOCKED</p>
-      <p>AWAIT FURTHER TRANSMISSION.</p>
+    <div class="card">
+      <h3>🔒 MISSION CONTROL</h3>
+      <p class="muted">
+        CLASSIFIED FILES CURRENTLY LOCKED.
+      </p>
+      <p class="muted">
+        AWAIT FURTHER TRANSMISSION.
+      </p>
     </div>
-
-    <p style="font-size:11px;color:#789ba1;margin-top:20px">
-      YOUR ACTIONS WILL DETERMINE YOUR TEAM'S FATE.
-    </p>
 
     <button onclick="logout()">DISCONNECT</button>
 
   </div>
 
-</div>
+</section>
 
-<footer>FFGC2K26 © 2026 | PROJECT BLACKOUT</footer>
+</main>
+
+<footer>
+  FFGC2K26 © 2026<br>
+  OFFICIAL MISSION CONTROL SYSTEM
+</footer>
 
 <script>
 
-const API_URL =
-  "https://wxszhdjmvgkajrklfpwn.supabase.co/functions/v1/blackout-login";
+const SUPABASE_URL =
+  "https://wxszhdjmvgkajrklfpwn.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
+
+const LOGIN_API =
+  SUPABASE_URL + "/functions/v1/blackout-login";
 
 const members = {
   DOMINATORS: [
@@ -242,6 +461,22 @@ const members = {
     "Rathi", "Batman", "Suhani"
   ]
 };
+
+function showPage(page) {
+  document.querySelectorAll("main section")
+    .forEach(section => {
+      section.classList.remove("active");
+    });
+
+  document.getElementById(page)
+    .classList.add("active");
+
+  window.scrollTo(0, 0);
+
+  if (page === "leaderboard") {
+    loadLeaderboard();
+  }
+}
 
 function updateMembers() {
   const team = document.getElementById("team").value;
@@ -260,13 +495,69 @@ function updateMembers() {
   });
 }
 
-async function login() {
+async function loadLeaderboard() {
+  const body = document.getElementById("leaderboardBody");
+  const status = document.getElementById("leaderboardStatus");
 
+  body.innerHTML = "";
+  status.textContent = "Loading live rankings...";
+
+  try {
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/ffgc_members?select=member_name,total_points,rank_name&order=total_points.desc,member_name.asc",
+      {
+        headers: {
+          "apikey": SUPABASE_KEY
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Database request failed");
+    }
+
+    const data = await response.json();
+
+    status.textContent = "";
+
+    if (!Array.isArray(data) || data.length === 0) {
+      status.textContent = "No rankings available.";
+      return;
+    }
+
+    data.forEach((member, index) => {
+      const row = document.createElement("tr");
+
+      const position = document.createElement("td");
+      position.textContent = index + 1;
+
+      const name = document.createElement("td");
+      name.textContent = member.member_name;
+
+      const points = document.createElement("td");
+      points.textContent = member.total_points;
+
+      const rank = document.createElement("td");
+      rank.className = "rank";
+      rank.textContent = member.rank_name;
+
+      row.append(position, name, points, rank);
+      body.appendChild(row);
+    });
+
+  } catch (error) {
+    status.textContent =
+      "Unable to load rankings. Please try again.";
+  }
+}
+
+async function login() {
   const team = document.getElementById("team").value;
   const member = document.getElementById("member").value;
   const password = document.getElementById("password").value;
 
-  const status = document.getElementById("status");
+  const status = document.getElementById("loginStatus");
   const button = document.getElementById("loginBtn");
 
   status.className = "status";
@@ -281,36 +572,33 @@ async function login() {
   status.textContent = "VERIFYING CLASSIFIED CREDENTIALS...";
 
   try {
-
-    const response = await fetch(API_URL, {
+    const response = await fetch(LOGIN_API, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY
       },
-      body: JSON.stringify({
-        team: team,
-        password: password
-      })
+      body: JSON.stringify({ team, password })
     });
 
     const data = await response.json();
 
     if (response.ok && data.success === true) {
-
       document.getElementById("password").value = "";
 
       document.getElementById("loginCard")
         .classList.add("hidden");
 
-      document.getElementById("dashboard")
+      document.getElementById("missionDashboard")
         .classList.remove("hidden");
 
-      document.getElementById("welcome").textContent =
+      document.getElementById("welcomeAgent").textContent =
         "AGENT " + member.toUpperCase() +
         " // TEAM " + team;
 
     } else {
-      status.textContent = "ACCESS DENIED — INVALID CREDENTIALS";
+      status.textContent =
+        "ACCESS DENIED — INVALID CREDENTIALS";
       status.classList.add("error");
     }
 
@@ -323,14 +611,14 @@ async function login() {
 }
 
 function logout() {
-  document.getElementById("dashboard")
+  document.getElementById("missionDashboard")
     .classList.add("hidden");
 
   document.getElementById("loginCard")
     .classList.remove("hidden");
 
   document.getElementById("password").value = "";
-  document.getElementById("status").textContent = "";
+  document.getElementById("loginStatus").textContent = "";
 }
 
 </script>
