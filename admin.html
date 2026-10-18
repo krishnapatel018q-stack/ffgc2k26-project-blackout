@@ -3,143 +3,280 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>FFGC2K26 | Private Control</title>
 
 <style>
-:root {
-  --bg:#04070d;
-  --card:#0b1421;
-  --line:#26384e;
-  --gold:#f6c96b;
+:root{
+  --bg:#05070d;
+  --card:#101825;
+  --gold:#f6cb72;
+  --line:#29364b;
   --text:#f5f7ff;
-  --muted:#9ba9bc;
+  --muted:#9baac0;
+  --green:#61efac;
+  --red:#ff758c;
 }
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
+  min-height:100vh;
   background:
-    radial-gradient(circle at top,#20223d,transparent 45%),
+    radial-gradient(circle at top,#242139,transparent 45%),
     var(--bg);
   color:var(--text);
   font-family:Arial,sans-serif;
-  min-height:100vh;
 }
+
 header{
   text-align:center;
-  padding:23px 12px;
-  border-bottom:1px solid var(--line);
+  padding:20px 12px;
   color:var(--gold);
-  font-size:14px;
   font-weight:bold;
   letter-spacing:3px;
+  font-size:13px;
+  border-bottom:1px solid var(--line);
 }
+
 main{
-  max-width:850px;
+  max-width:900px;
   margin:auto;
   padding:22px 15px 60px;
 }
+
 h1{
   color:var(--gold);
-  font-size:clamp(30px,8vw,52px);
-  text-align:center;
+  font-size:clamp(35px,9vw,60px);
   margin:15px 0;
+  text-shadow:0 0 25px #c59b3e44;
 }
-h2{color:var(--gold);font-size:19px}
-p{line-height:1.6}
-.muted{color:var(--muted)}
-.center{text-align:center}
+
+h2{
+  color:var(--gold);
+  font-size:20px;
+}
+
+h3{
+  margin-top:0;
+}
+
+p{
+  line-height:1.6;
+}
+
+.center{
+  text-align:center;
+}
+
+.muted{
+  color:var(--muted);
+}
+
 .card{
-  background:linear-gradient(145deg,#111c2e,#080f1a);
+  background:linear-gradient(145deg,#141e30,#090e17);
   border:1px solid var(--line);
   border-radius:16px;
   padding:22px;
-  margin:16px 0;
-  box-shadow:0 15px 40px #0007;
+  margin:17px 0;
+  box-shadow:0 15px 40px #0006;
 }
+
+.badge{
+  display:inline-block;
+  color:var(--gold);
+  border:1px solid #8b713d;
+  border-radius:25px;
+  padding:8px 13px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
 label{
   display:block;
-  margin:17px 0 7px;
   color:var(--muted);
   font-size:12px;
+  margin:17px 0 8px;
 }
-input{
+
+input,select,textarea{
   width:100%;
-  padding:15px;
-  border:1px solid #40516c;
+  padding:14px;
+  border:1px solid #40516a;
   border-radius:9px;
-  background:#050b13;
+  background:#050b14;
   color:white;
   font-size:15px;
+  font-family:inherit;
 }
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
 button{
-  background:var(--gold);
-  color:#17100a;
+  padding:14px 19px;
   border:0;
   border-radius:9px;
-  padding:14px 18px;
+  background:var(--gold);
+  color:#17110a;
   font-weight:bold;
   cursor:pointer;
 }
-button:disabled{opacity:.5}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.secondary{
+  background:#202d40;
+  color:white;
+  border:1px solid #42516b;
+}
+
+.green{
+  background:#126b4c;
+  color:white;
+}
+
+.red{
+  background:#8e263e;
+  color:white;
+}
+
+.hidden{
+  display:none!important;
+}
+
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:14px;
 }
-.grid .card{margin:0}
-.hidden{display:none!important}
-.status{margin-top:15px;font-size:13px}
-.error{color:#ff8597}
-.success{color:#77f6bb}
-.badge{
-  display:inline-block;
-  padding:8px 12px;
-  border:1px solid #8d7139;
-  border-radius:20px;
-  color:var(--gold);
-  font-size:11px;
-  letter-spacing:1px;
+
+.grid .card{
+  margin:0;
 }
+
+.status{
+  margin-top:15px;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.success{
+  color:var(--green);
+}
+
+.error{
+  color:var(--red);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  padding:12px 8px;
+  border-bottom:1px solid #26364a;
+  text-align:left;
+}
+
+th{
+  color:var(--gold);
+}
+
+.tableWrap{
+  overflow-x:auto;
+}
+
+.controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+}
+
+.stat{
+  font-size:30px;
+  color:var(--gold);
+  font-weight:bold;
+}
+
+.small{
+  font-size:12px;
+}
+
 footer{
   text-align:center;
-  color:#718096;
   padding:25px;
   font-size:11px;
+  color:#74849b;
+}
+
+@media(max-width:450px){
+  .card{
+    padding:17px;
+  }
+
+  th,td{
+    padding:10px 5px;
+    font-size:11px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>FFGC2K26 // RESTRICTED SYSTEM</header>
+<header>
+FFGC2K26 // RESTRICTED SYSTEM
+</header>
 
 <main>
 
 <div class="center">
   <span class="badge">PRIVATE AUTHORIZATION REQUIRED</span>
+
   <h1>GOD MODE</h1>
-  <p class="muted">THE ULTIMATE CONTROL SYSTEM</p>
+
+  <p class="muted">
+    THE ULTIMATE CONTROL SYSTEM
+  </p>
 </div>
 
+<!-- LOGIN -->
+
 <div id="loginPanel" class="card">
+
   <h2>🔐 ADMIN AUTHENTICATION</h2>
+
   <p class="muted">
     Authorized personnel only.
   </p>
 
   <label>ADMIN EMAIL</label>
+
   <input
-    type="email"
     id="email"
-    placeholder="Enter your admin email"
+    type="email"
+    placeholder="Enter admin email"
     autocomplete="username"
   >
 
   <label>ADMIN PASSWORD</label>
+
   <input
-    type="password"
     id="password"
-    placeholder="Enter your admin password"
+    type="password"
+    placeholder="Enter admin password"
     autocomplete="current-password"
   >
 
@@ -150,67 +287,211 @@ footer{
   </button>
 
   <div id="loginStatus" class="status"></div>
+
 </div>
+
+<!-- DASHBOARD -->
 
 <div id="dashboard" class="hidden">
 
   <div class="card center">
-    <span class="badge">SUPER ADMIN VERIFIED</span>
+
+    <span class="badge">
+      SUPER ADMIN VERIFIED
+    </span>
+
     <h2>WELCOME, KRISHNA 👑</h2>
+
     <p class="muted">
-      Your identity has been verified.
+      PRIVATE CONTROL CENTER ACTIVE
     </p>
-    <button onclick="adminLogout()">SECURE LOGOUT</button>
+
+    <button class="secondary" onclick="adminLogout()">
+      SECURE LOGOUT
+    </button>
+
   </div>
+
+  <!-- STATS -->
+
+  <div class="grid">
+
+    <div class="card center">
+      <p class="muted">TOTAL MEMBERS</p>
+      <div class="stat" id="totalMembers">—</div>
+    </div>
+
+    <div class="card center">
+      <p class="muted">TOTAL POINTS</p>
+      <div class="stat" id="totalPoints">—</div>
+    </div>
+
+    <div class="card center">
+      <p class="muted">CURRENT LEADER</p>
+      <div class="stat" id="currentLeader" style="font-size:22px">
+        —
+      </div>
+    </div>
+
+  </div>
+
+  <!-- POINTS CONTROL -->
+
+  <div class="card">
+
+    <span class="badge">
+      GOD MODE // MODULE 01
+    </span>
+
+    <h2>🏆 POINTS CONTROL</h2>
+
+    <p class="muted">
+      Modify member scores. Rankings update
+      automatically based on total points.
+    </p>
+
+    <label>SELECT MEMBER</label>
+
+    <select id="memberSelect">
+      <option value="">
+        Loading members...
+      </option>
+    </select>
+
+    <p id="selectedScore" class="muted small">
+      Select a member to view current points.
+    </p>
+
+    <label>POINTS AMOUNT</label>
+
+    <input
+      id="pointsAmount"
+      type="number"
+      min="1"
+      max="1000000"
+      step="1"
+      placeholder="Example: 100"
+    >
+
+    <label>REASON FOR CHANGE</label>
+
+    <textarea
+      id="pointsReason"
+      maxlength="300"
+      placeholder="Example: Task completed / Bonus / Penalty"
+    ></textarea>
+
+    <div class="controls">
+
+      <button
+        class="green"
+        id="addBtn"
+        onclick="changePoints('add')"
+      >
+        + ADD POINTS
+      </button>
+
+      <button
+        class="red"
+        id="deductBtn"
+        onclick="changePoints('deduct')"
+      >
+        − DEDUCT POINTS
+      </button>
+
+    </div>
+
+    <div id="pointsStatus" class="status"></div>
+
+  </div>
+
+  <!-- LIVE LEADERBOARD -->
+
+  <div class="card">
+
+    <h2>📊 LIVE LEADERBOARD</h2>
+
+    <p class="muted">
+      Rankings automatically rearrange whenever
+      points are updated.
+    </p>
+
+    <div id="leaderboardStatus" class="status">
+      Loading rankings...
+    </div>
+
+    <div class="tableWrap">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>MEMBER</th>
+            <th>POINTS</th>
+            <th>RANK</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboardBody"></tbody>
+
+      </table>
+
+    </div>
+
+    <br>
+
+    <button
+      class="secondary"
+      onclick="loadMembers()"
+    >
+      ↻ REFRESH RANKINGS
+    </button>
+
+  </div>
+
+  <!-- FUTURE MODULES -->
 
   <div class="grid">
 
     <div class="card">
-      <h2>🏆 POINTS CONTROL</h2>
-      <p class="muted">
-        Manage member scores and automatic rankings.
-      </p>
-      <span class="badge">ACTIVATION PENDING</span>
-    </div>
-
-    <div class="card">
       <h2>🎯 MISSION CONTROL</h2>
       <p class="muted">
-        Create missions, unlock tasks and monitor progress.
+        Create tasks, manage missions and unlock files.
       </p>
-      <span class="badge">ACTIVATION PENDING</span>
+      <span class="badge">COMING NEXT</span>
     </div>
 
     <div class="card">
       <h2>📢 ANNOUNCEMENTS</h2>
       <p class="muted">
-        Publish official updates.
+        Publish official notices and updates.
       </p>
-      <span class="badge">ACTIVATION PENDING</span>
+      <span class="badge">COMING NEXT</span>
     </div>
 
     <div class="card">
       <h2>👥 MEMBER CONTROL</h2>
       <p class="muted">
-        Manage membership and game access.
+        Manage members and game access.
       </p>
-      <span class="badge">ACTIVATION PENDING</span>
+      <span class="badge">COMING NEXT</span>
     </div>
 
     <div class="card">
       <h2>🛡️ CO-ADMIN CONTROL</h2>
       <p class="muted">
-        Assign limited administrative permissions.
+        Assign and manage administrative permissions.
       </p>
-      <span class="badge">ACTIVATION PENDING</span>
+      <span class="badge">COMING NEXT</span>
     </div>
 
     <div class="card">
       <h2>⚡ SYSTEM CONTROL</h2>
       <p class="muted">
-        Manage maintenance mode and game status.
+        Website maintenance and game status.
       </p>
-      <span class="badge">ACTIVATION PENDING</span>
+      <span class="badge">COMING NEXT</span>
     </div>
 
   </div>
@@ -219,7 +500,9 @@ footer{
 
 </main>
 
-<footer>FFGC2K26 © 2026 // RESTRICTED ACCESS</footer>
+<footer>
+FFGC2K26 © 2026 // PRIVATE CONTROL SYSTEM
+</footer>
 
 <script>
 
@@ -230,51 +513,72 @@ const SUPABASE_KEY =
   "sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
 
 let accessToken = null;
+let membersData = [];
+let isUpdating = false;
 
-async function adminLogin() {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+// AUTH LOGIN
 
-  const status = document.getElementById("loginStatus");
-  const button = document.getElementById("loginBtn");
+async function adminLogin(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const status =
+    document.getElementById("loginStatus");
+
+  const button =
+    document.getElementById("loginBtn");
 
   status.textContent = "";
   status.className = "status";
 
-  if (!email || !password) {
-    status.textContent = "ENTER EMAIL AND PASSWORD";
+  if(!email || !password){
+    status.textContent =
+      "ENTER EMAIL AND PASSWORD";
     status.classList.add("error");
     return;
   }
 
   button.disabled = true;
-  status.textContent = "VERIFYING ADMIN CREDENTIALS...";
 
-  try {
-    const authResponse = await fetch(
-      SUPABASE_URL + "/auth/v1/token?grant_type=password",
+  status.textContent =
+    "VERIFYING ADMIN CREDENTIALS...";
+
+  try{
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/auth/v1/token?grant_type=password",
       {
         method:"POST",
         headers:{
           "Content-Type":"application/json",
           "apikey":SUPABASE_KEY
         },
-        body:JSON.stringify({email,password})
+        body:JSON.stringify({
+          email,
+          password
+        })
       }
     );
 
-    const authData = await authResponse.json();
+    const data = await response.json();
 
-    if (!authResponse.ok || !authData.access_token) {
-      throw new Error("INVALID EMAIL OR PASSWORD");
+    if(!response.ok || !data.access_token){
+      throw new Error(
+        "INVALID EMAIL OR PASSWORD"
+      );
     }
 
-    const token = authData.access_token;
+    const token = data.access_token;
 
     const roleResponse = await fetch(
       SUPABASE_URL +
       "/rest/v1/ffgc_admins?select=role&user_id=eq." +
-      encodeURIComponent(authData.user.id),
+      encodeURIComponent(data.user.id),
       {
         headers:{
           "apikey":SUPABASE_KEY,
@@ -283,38 +587,352 @@ async function adminLogin() {
       }
     );
 
-    if (!roleResponse.ok) {
-      throw new Error("ADMIN ROLE VERIFICATION FAILED");
+    if(!roleResponse.ok){
+      throw new Error(
+        "ADMIN ROLE VERIFICATION FAILED"
+      );
     }
 
     const roles = await roleResponse.json();
 
-    if (
+    if(
       !Array.isArray(roles) ||
-      !roles.some(row => row.role === "super_admin")
-    ) {
-      throw new Error("SUPER ADMIN ACCESS REQUIRED");
+      !roles.some(
+        row => row.role === "super_admin"
+      )
+    ){
+      throw new Error(
+        "SUPER ADMIN ACCESS REQUIRED"
+      );
     }
 
     accessToken = token;
 
     document.getElementById("password").value = "";
+
     document.getElementById("loginPanel")
       .classList.add("hidden");
 
     document.getElementById("dashboard")
       .classList.remove("hidden");
 
-  } catch (error) {
+    await loadMembers();
+
+  }catch(error){
+
     status.textContent = error.message;
     status.classList.add("error");
+
   }
 
   button.disabled = false;
+
 }
 
-function adminLogout() {
+// LOAD MEMBERS
+
+async function loadMembers(){
+
+  if(!accessToken) return;
+
+  const status =
+    document.getElementById("leaderboardStatus");
+
+  const body =
+    document.getElementById("leaderboardBody");
+
+  status.textContent =
+    "LOADING LIVE RANKINGS...";
+
+  try{
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/ffgc_members" +
+      "?select=member_name,total_points,rank_name" +
+      "&order=total_points.desc,member_name.asc",
+      {
+        headers:{
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer " + accessToken
+        }
+      }
+    );
+
+    if(!response.ok){
+      throw new Error(
+        "COULD NOT LOAD MEMBERS"
+      );
+    }
+
+    const data = await response.json();
+
+    membersData = data;
+
+    body.innerHTML = "";
+
+    data.forEach((member,index)=>{
+
+      const row = document.createElement("tr");
+
+      const pos = document.createElement("td");
+      pos.textContent = index + 1;
+
+      const name = document.createElement("td");
+      name.textContent = member.member_name;
+
+      const points = document.createElement("td");
+      points.textContent = member.total_points;
+
+      const rank = document.createElement("td");
+      rank.textContent = member.rank_name;
+
+      row.append(pos,name,points,rank);
+
+      body.appendChild(row);
+
+    });
+
+    document.getElementById("totalMembers")
+      .textContent = data.length;
+
+    document.getElementById("totalPoints")
+      .textContent = data.reduce(
+        (sum,m)=>sum+Number(m.total_points),0
+      ).toLocaleString();
+
+    document.getElementById("currentLeader")
+      .textContent =
+      data.length ? data[0].member_name : "—";
+
+    const select =
+      document.getElementById("memberSelect");
+
+    const oldValue = select.value;
+
+    select.innerHTML =
+      '<option value="">-- SELECT MEMBER --</option>';
+
+    data.forEach(member=>{
+
+      const option = document.createElement("option");
+
+      option.value = member.member_name;
+      option.textContent = member.member_name;
+
+      select.appendChild(option);
+
+    });
+
+    if(data.some(m=>m.member_name===oldValue)){
+      select.value = oldValue;
+    }
+
+    updateSelectedScore();
+
+    status.textContent =
+      "LIVE RANKINGS LOADED SUCCESSFULLY";
+
+    status.className = "status success";
+
+  }catch(error){
+
+    status.textContent = error.message;
+    status.className = "status error";
+
+  }
+
+}
+
+// SELECTED SCORE
+
+function updateSelectedScore(){
+
+  const name =
+    document.getElementById("memberSelect").value;
+
+  const member =
+    membersData.find(m=>m.member_name===name);
+
+  document.getElementById("selectedScore")
+    .textContent = member
+    ? "CURRENT POINTS: " + member.total_points
+    : "Select a member to view current points.";
+
+}
+
+document.getElementById("memberSelect")
+  .addEventListener("change",updateSelectedScore);
+
+// CHANGE POINTS
+
+async function changePoints(type){
+
+  if(isUpdating || !accessToken) return;
+
+  const member =
+    document.getElementById("memberSelect").value;
+
+  const amountInput =
+    document.getElementById("pointsAmount");
+
+  const amount = Number(amountInput.value);
+
+  const reason =
+    document.getElementById("pointsReason")
+      .value.trim();
+
+  const status =
+    document.getElementById("pointsStatus");
+
+  status.textContent = "";
+  status.className = "status";
+
+  if(!member){
+    status.textContent = "SELECT A MEMBER";
+    status.classList.add("error");
+    return;
+  }
+
+  if(
+    !Number.isSafeInteger(amount) ||
+    amount <= 0 ||
+    amount > 1000000
+  ){
+    status.textContent =
+      "ENTER A VALID POINTS AMOUNT (1–1000000)";
+    status.classList.add("error");
+    return;
+  }
+
+  if(!reason){
+    status.textContent =
+      "REASON IS REQUIRED";
+    status.classList.add("error");
+    return;
+  }
+
+  const change =
+    type === "add" ? amount : -amount;
+
+  const current =
+    membersData.find(m=>m.member_name===member);
+
+  if(!current){
+    status.textContent = "MEMBER NOT FOUND";
+    status.classList.add("error");
+    return;
+  }
+
+  const expectedPoints =
+    Number(current.total_points) + change;
+
+  if(expectedPoints < 0){
+    status.textContent =
+      "POINTS CANNOT BE NEGATIVE";
+    status.classList.add("error");
+    return;
+  }
+
+  const action =
+    type === "add" ? "ADD" : "DEDUCT";
+
+  const confirmed = confirm(
+    "CONFIRM POINTS UPDATE\n\n" +
+    "MEMBER: " + member + "\n" +
+    "ACTION: " + action + "\n" +
+    "AMOUNT: " + amount + "\n" +
+    "CURRENT POINTS: " + current.total_points + "\n" +
+    "EXPECTED NEW POINTS: " + expectedPoints + "\n\n" +
+    "REASON: " + reason
+  );
+
+  if(!confirmed) return;
+
+  isUpdating = true;
+
+  const addBtn =
+    document.getElementById("addBtn");
+
+  const deductBtn =
+    document.getElementById("deductBtn");
+
+  addBtn.disabled = true;
+  deductBtn.disabled = true;
+
+  status.textContent =
+    "UPDATING DATABASE...";
+
+  try{
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/rpc/ffgc_change_points",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer " + accessToken
+        },
+        body:JSON.stringify({
+          p_member_name:member,
+          p_points_change:change,
+          p_reason:reason
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if(!response.ok || !data.success){
+      throw new Error(
+        data.message ||
+        data.error ||
+        "POINTS UPDATE FAILED"
+      );
+    }
+
+    status.textContent =
+      "SUCCESS! " +
+      member +
+      ": " +
+      data.old_points +
+      " → " +
+      data.new_points +
+      " POINTS";
+
+    status.className = "status success";
+
+    amountInput.value = "";
+
+    document.getElementById("pointsReason")
+      .value = "";
+
+    await loadMembers();
+
+  }catch(error){
+
+    status.textContent = error.message;
+    status.className = "status error";
+
+  }finally{
+
+    isUpdating = false;
+
+    addBtn.disabled = false;
+    deductBtn.disabled = false;
+
+  }
+
+}
+
+// LOGOUT
+
+function adminLogout(){
+
   accessToken = null;
+  membersData = [];
 
   document.getElementById("dashboard")
     .classList.add("hidden");
@@ -324,7 +942,17 @@ function adminLogout() {
 
   document.getElementById("email").value = "";
   document.getElementById("password").value = "";
-  document.getElementById("loginStatus").textContent = "";
+
+  document.getElementById("loginStatus")
+    .textContent = "";
+
+  document.getElementById("leaderboardBody")
+    .innerHTML = "";
+
+  document.getElementById("memberSelect")
+    .innerHTML =
+    '<option value="">-- SELECT MEMBER --</option>';
+
 }
 
 </script>
