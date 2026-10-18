@@ -1,414 +1,686 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>FFGC2K26 | GOD MODE</title>
 <style>
-:root{--bg:#05070d;--card:#101825;--gold:#f6cb72;--line:#29364b;--text:#f5f7ff;--muted:#9baac0;--green:#61efac;--red:#ff758c}
+:root{color-scheme:dark;--a:#00ebc7}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(circle at top,#242139,transparent 45%),var(--bg);color:var(--text);font-family:Arial,sans-serif}
-header{text-align:center;padding:20px 12px;color:var(--gold);font-weight:bold;letter-spacing:3px;font-size:13px;border-bottom:1px solid var(--line)}
-main{max-width:900px;margin:auto;padding:22px 15px 60px}
-h1{color:var(--gold);font-size:clamp(35px,9vw,60px);margin:15px 0;text-shadow:0 0 25px #c59b3e44}
-h2{color:var(--gold);font-size:20px}
-p{line-height:1.6}
-.center{text-align:center}.muted{color:var(--muted)}
-.card{background:linear-gradient(145deg,#141e30,#090e17);border:1px solid var(--line);border-radius:16px;padding:22px;margin:17px 0;box-shadow:0 15px 40px #0006}
-.badge{display:inline-block;color:var(--gold);border:1px solid #8b713d;border-radius:25px;padding:8px 13px;font-size:11px;letter-spacing:1px}
-label{display:block;color:var(--muted);font-size:12px;margin:17px 0 8px}
-input,select,textarea{width:100%;padding:14px;border:1px solid #40516a;border-radius:9px;background:#050b14;color:white;font-size:15px;font-family:inherit}
-textarea{min-height:90px;resize:vertical}
-button{padding:14px 19px;border:0;border-radius:9px;background:var(--gold);color:#17110a;font-weight:bold;cursor:pointer}
-button:disabled{opacity:.5;cursor:not-allowed}
-.secondary{background:#202d40;color:white;border:1px solid #42516b}
-.green{background:#126b4c;color:white}.red{background:#8e263e;color:white}
+body{margin:0;background:radial-gradient(circle at top,#17313d,#05090f 70%);color:#e9ffff;font:15px system-ui,Arial}
+header{padding:24px 18px;border-bottom:1px solid #22515b}
+h1{margin:0;color:var(--a);letter-spacing:2px}
+small,.muted{color:#9cb9c0}
+main{max-width:950px;margin:auto;padding:18px}
+.card{background:#0d1c26;border:1px solid #24515c;border-radius:16px;padding:20px;margin:15px 0;box-shadow:0 8px 24px #0004}
+input,textarea,select,button{font:inherit;border-radius:9px;padding:12px;max-width:100%}
+input,textarea,select{width:100%;margin:7px 0 12px;background:#06131b;border:1px solid #36616a;color:#fff}
+textarea{min-height:100px}
+button{background:var(--a);color:#041515;border:0;font-weight:800;cursor:pointer;margin:5px 5px 5px 0}
+button.secondary{background:#294a56;color:#fff}
+button.danger{background:#e46675;color:#21040b}
 .hidden{display:none!important}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.grid .card{margin:0}
-.status{margin-top:15px;font-size:13px;line-height:1.6}.success{color:var(--green)}.error{color:var(--red)}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:12px 8px;border-bottom:1px solid #26364a;text-align:left}
-th{color:var(--gold)}.tableWrap{overflow-x:auto}
-.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
-.stat{font-size:30px;color:var(--gold);font-weight:bold}.small{font-size:12px}
-.toggleRow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
-.toggleRow strong{display:block;margin-bottom:5px}
-.toggleRow p{margin:0;font-size:12px;color:var(--muted)}
-.toggleRow input{width:23px;height:23px;accent-color:var(--gold);flex-shrink:0}
-footer{text-align:center;padding:25px;font-size:11px;color:#74849b}
-@media(max-width:450px){.card{padding:17px}th,td{padding:10px 5px;font-size:11px}}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+.row>*{flex:1;min-width:180px}
+.item{padding:12px;border:1px solid #2d4e59;border-radius:10px;margin:10px 0;overflow-wrap:anywhere}
+.status{padding:10px;color:#b4fff2;white-space:pre-wrap}
+.warn{color:#ffc782}
+label{display:block}
+a{color:var(--a)}
+hr{border:0;border-top:1px solid #29434c;margin:20px 0}
 </style>
 </head>
 <body>
 
-<header>FFGC2K26 // RESTRICTED SYSTEM</header>
+<header>
+<h1>FFGC2K26 // GOD MODE</h1>
+<small>SUPER ADMIN CONTROL CENTER • PROJECT BLACKOUT</small>
+</header>
 
 <main>
-<div class="center">
-<span class="badge">PRIVATE AUTHORIZATION REQUIRED</span>
-<h1>GOD MODE</h1>
-<p class="muted">THE ULTIMATE CONTROL SYSTEM</p>
-</div>
 
-<div id="loginPanel" class="card">
-<h2>🔐 ADMIN AUTHENTICATION</h2>
-<p class="muted">Authorized personnel only.</p>
-<label>ADMIN EMAIL</label>
-<input id="email" type="email" placeholder="Enter admin email" autocomplete="username">
-<label>ADMIN PASSWORD</label>
-<input id="password" type="password" placeholder="Enter admin password" autocomplete="current-password">
-<br><br>
-<button id="loginBtn" onclick="adminLogin()">VERIFY AUTHORITY →</button>
-<div id="loginStatus" class="status"></div>
-</div>
+<section id="auth" class="card">
+<h2>🔐 Admin Authentication</h2>
+<input id="email" type="email" placeholder="Admin email" autocomplete="username">
+<input id="pass" type="password" placeholder="Admin password" autocomplete="current-password">
+<button onclick="signIn()">SIGN IN</button>
+<div id="authStatus" class="status"></div>
+</section>
 
-<div id="dashboard" class="hidden">
+<div id="panel" class="hidden">
 
-<div class="card center">
-<span class="badge">SUPER ADMIN VERIFIED</span>
-<h2>WELCOME, KRISHNA 👑</h2>
-<p class="muted">PRIVATE CONTROL CENTER ACTIVE</p>
-<button class="secondary" onclick="adminLogout()">SECURE LOGOUT</button>
-</div>
-
-<div class="grid">
-<div class="card center"><p class="muted">TOTAL MEMBERS</p><div class="stat" id="totalMembers">—</div></div>
-<div class="card center"><p class="muted">TOTAL POINTS</p><div class="stat" id="totalPoints">—</div></div>
-<div class="card center"><p class="muted">CURRENT LEADER</p><div class="stat" id="currentLeader" style="font-size:22px">—</div></div>
-</div>
-
-<!-- SYSTEM CONTROL -->
 <div class="card">
-<span class="badge">GOD MODE // POWER 05</span>
-<h2>⚡ WEBSITE & GAME CONTROL</h2>
-<p class="muted">Change system status. Settings are saved securely in Supabase.</p>
-
-<div class="toggleRow">
-<div><strong>🛠️ MAINTENANCE MODE</strong><p>Show a maintenance screen to public visitors after the public website update.</p></div>
-<input id="maintenanceToggle" type="checkbox">
+<h2>👑 Control Center</h2>
+<p id="who" class="muted"></p>
+<button class="secondary" onclick="reloadAll()">↻ Refresh all</button>
+<button class="secondary" onclick="signOut()">Log out</button>
+<p id="msg" class="status"></p>
 </div>
 
-<div class="toggleRow">
-<div><strong>⏸️ GAME PAUSE</strong><p>Pause missions after game backend enforcement is added.</p></div>
-<input id="pauseToggle" type="checkbox">
+<section class="card">
+<h2>📢 Announcements</h2>
+<input type="hidden" id="noticeId">
+<input id="noticeTitle" placeholder="Announcement title">
+<textarea id="noticeBody" placeholder="Announcement text"></textarea>
+<label>
+<input id="noticePublished" type="checkbox" style="width:auto">
+Publish immediately
+</label>
+<button onclick="saveNotice()">Save announcement</button>
+<button class="secondary" onclick="clearNotice()">Clear form</button>
+<div id="notices"></div>
+</section>
+
+<section class="card">
+<h2>🎯 Tasks</h2>
+<input type="hidden" id="taskId">
+<input id="taskTitle" placeholder="Task title">
+<textarea id="taskDescription" placeholder="Task details"></textarea>
+
+<label>Status
+<select id="taskStatus">
+<option value="draft">Draft</option>
+<option value="published">Published</option>
+<option value="active">Active</option>
+<option value="closed">Closed</option>
+</select>
+</label>
+
+<div class="row">
+<label>Starts (optional)
+<input id="taskStart" type="datetime-local">
+</label>
+<label>Ends (optional)
+<input id="taskEnd" type="datetime-local">
+</label>
 </div>
 
-<div class="toggleRow">
-<div><strong>🚨 EMERGENCY LOCKDOWN</strong><p>Block game access after game backend enforcement is added.</p></div>
-<input id="lockdownToggle" type="checkbox">
-</div>
+<button onclick="saveTask()">Save task</button>
+<button class="secondary" onclick="clearTask()">Clear form</button>
+<div id="tasks"></div>
+</section>
 
-<label>MAINTENANCE MESSAGE</label>
-<textarea id="maintenanceMessage" maxlength="500"></textarea>
+<section class="card">
+<h2>🎯 MISSION CONTROL — CREATE / UNLOCK</h2>
+<p class="muted">
+Create one mission per team and mission number.
+Leave unlock time blank to unlock immediately.
+Never publish answers.
+</p>
 
-<div class="controls">
-<button id="saveSystemBtn" onclick="saveSystemControl()">💾 SAVE SYSTEM SETTINGS</button>
-<button class="secondary" onclick="loadSystemControl()">↻ RELOAD STATUS</button>
-</div>
-<div id="systemStatus" class="status"></div>
-</div>
+<label>Team
+<select id="missionTeam">
+<option>DOMINATORS</option>
+<option>THUNDERBOLT</option>
+<option>SYNDICATE</option>
+</select>
+</label>
 
-<!-- POINTS CONTROL -->
-<div class="card">
-<span class="badge">GOD MODE // MODULE 01</span>
-<h2>🏆 POINTS CONTROL</h2>
-<p class="muted">Modify scores. Rankings update automatically.</p>
+<label>Mission number
+<input id="missionNumber" type="number" min="1" max="100" value="1">
+</label>
 
-<label>SELECT MEMBER</label>
-<select id="memberSelect"><option value="">Loading members...</option></select>
-<p id="selectedScore" class="muted small">Select a member to view current points.</p>
+<input id="missionTitle" placeholder="Mission title">
+<textarea id="missionStory" placeholder="Mission story"></textarea>
+<textarea id="missionClue" placeholder="Clue"></textarea>
+<input id="missionAnswer" placeholder="Correct answer (kept secret)">
 
-<label>POINTS AMOUNT</label>
-<input id="pointsAmount" type="number" min="1" max="1000000" step="1" placeholder="Example: 100">
+<label>Unlock at (blank = now)
+<input id="missionUnlock" type="datetime-local">
+</label>
 
-<label>REASON FOR CHANGE</label>
-<textarea id="pointsReason" maxlength="300" placeholder="Task completed / Bonus / Penalty"></textarea>
+<button onclick="saveMission()">SAVE / UNLOCK MISSION</button>
+<p id="missionMsg" class="status"></p>
+</section>
 
-<div class="controls">
-<button class="green" id="addBtn" onclick="changePoints('add')">+ ADD POINTS</button>
-<button class="red" id="deductBtn" onclick="changePoints('deduct')">− DEDUCT POINTS</button>
-</div>
-<div id="pointsStatus" class="status"></div>
-</div>
+<section class="card">
+<h2>🏆 Members & Points</h2>
+<p class="muted">
+Live member scores from database.
+Points editing is not included in this version.
+</p>
+<div id="members"></div>
 
-<!-- LEADERBOARD -->
-<div class="card">
-<h2>📊 LIVE LEADERBOARD</h2>
-<div id="leaderboardStatus" class="status">Loading rankings...</div>
-<div class="tableWrap">
-<table>
-<thead><tr><th>#</th><th>MEMBER</th><th>POINTS</th><th>RANK</th></tr></thead>
-<tbody id="leaderboardBody"></tbody>
-</table>
-</div>
-<br>
-<button class="secondary" onclick="loadMembers()">↻ REFRESH RANKINGS</button>
-</div>
+<hr>
 
-<div class="grid">
-<div class="card"><h2>🎯 MISSION CONTROL</h2><p class="muted">Create tasks and manage missions.</p><span class="badge">COMING NEXT</span></div>
-<div class="card"><h2>📢 ANNOUNCEMENTS</h2><p class="muted">Publish official updates.</p><span class="badge">COMING NEXT</span></div>
-<div class="card"><h2>👥 MEMBER CONTROL</h2><p class="muted">Manage members and game access.</p><span class="badge">COMING NEXT</span></div>
-<div class="card"><h2>🛡️ CO-ADMIN CONTROL</h2><p class="muted">Manage limited admin permissions.</p><span class="badge">COMING NEXT</span></div>
-</div>
+<h3>👥 MEMBER CONTROL</h3>
+
+<label>Member
+<select id="banMember"></select>
+</label>
+
+<label>
+<input id="banEnabled" type="checkbox" style="width:auto">
+Ban member
+</label>
+
+<input id="banReason" placeholder="Reason (optional)">
+<button onclick="saveBan()">SAVE MEMBER RESTRICTION</button>
+
+<p class="warn">
+Restrictions are stored in the database.
+Public login must also enforce them.
+</p>
+</section>
+
+<section class="card">
+<h2>🛡️ CO-ADMIN CONTROL</h2>
+<p class="muted">
+Assign permissions to an existing user with the co_admin role.
+</p>
+
+<label>Co-admin
+<select id="coadminUser"></select>
+</label>
+
+<div id="permissionChecks"></div>
+
+<button onclick="savePermissions()">SAVE PERMISSIONS</button>
+
+<p class="warn">
+Permissions must also be enforced by backend actions.
+</p>
+</section>
+
+<section class="card">
+<h2>⚙️ Website Text Settings</h2>
+
+<label>Home title
+<input id="home_title">
+</label>
+
+<label>Home subtitle
+<input id="home_subtitle">
+</label>
+
+<label>Blackout intro
+<input id="blackout_intro">
+</label>
+
+<button onclick="saveSettings()">Save text settings</button>
+
+<p class="muted">
+Public website must read these settings before changes appear.
+</p>
+</section>
+
+<section class="card">
+<h2>🚨 Maintenance / Pause / Lockdown</h2>
+<p class="warn">
+These controls are not implemented in this version.
+Keep the previous working admin panel backed up.
+</p>
+</section>
+
+<section class="card">
+<h2>📋 Recent Audit Log</h2>
+<div id="audit"></div>
+</section>
 
 </div>
 </main>
 
-<footer>FFGC2K26 © 2026 // PRIVATE CONTROL SYSTEM</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL="https://wxszhdjmvgkajrklfpwn.supabase.co";
-const SUPABASE_KEY="sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
+const URL='https://wxszhdjmvgkajrklfpwn.supabase.co';
+const KEY='sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3';
 
-let accessToken=null;
-let membersData=[];
-let isUpdating=false;
+const db=window.supabase.createClient(URL,KEY);
+const $=id=>document.getElementById(id);
 
-function setStatus(id,message,isError=false){
-  const el=document.getElementById(id);
-  el.textContent=message;
-  el.className="status "+(isError?"error":"success");
+let notices=[],tasks=[];
+
+function say(s){
+  $('msg').textContent=s;
 }
 
-async function adminLogin(){
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value;
-  const button=document.getElementById("loginBtn");
-  if(!email||!password){setStatus("loginStatus","ENTER EMAIL AND PASSWORD",true);return;}
-  button.disabled=true;
-  setStatus("loginStatus","VERIFYING CREDENTIALS...");
-
-  try{
-    const response=await fetch(SUPABASE_URL+"/auth/v1/token?grant_type=password",{
-      method:"POST",
-      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
-      body:JSON.stringify({email,password})
-    });
-    const data=await response.json();
-    if(!response.ok||!data.access_token||!data.user?.id)throw Error("INVALID EMAIL OR PASSWORD");
-
-    const roleResponse=await fetch(
-      SUPABASE_URL+"/rest/v1/ffgc_admins?select=role&user_id=eq."+encodeURIComponent(data.user.id),
-      {headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+data.access_token}}
-    );
-    if(!roleResponse.ok)throw Error("ADMIN ROLE VERIFICATION FAILED");
-    const roles=await roleResponse.json();
-    if(!Array.isArray(roles)||!roles.some(r=>r.role==="super_admin"))throw Error("SUPER ADMIN ACCESS REQUIRED");
-
-    accessToken=data.access_token;
-    document.getElementById("password").value="";
-    document.getElementById("loginPanel").classList.add("hidden");
-    document.getElementById("dashboard").classList.remove("hidden");
-
-    await Promise.all([loadMembers(),loadSystemControl()]);
-  }catch(error){
-    setStatus("loginStatus",error.message,true);
-  }finally{button.disabled=false;}
+function safe(s){
+  return String(s??'').replace(/[&<>"']/g,c=>({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#39;'
+  }[c]));
 }
 
-async function loadSystemControl(){
-  if(!accessToken)return;
-  setStatus("systemStatus","LOADING SYSTEM STATUS...");
-  try{
-    const response=await fetch(
-      SUPABASE_URL+"/rest/v1/ffgc_system_control?select=maintenance_mode,game_paused,emergency_lockdown,maintenance_message&id=eq.1",
-      {headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+accessToken}}
-    );
-    if(!response.ok)throw Error("COULD NOT LOAD SYSTEM STATUS");
-    const data=await response.json();
-    if(!data.length)throw Error("SYSTEM SETTINGS NOT FOUND");
+async function signIn(){
+  $('authStatus').textContent='Signing in…';
 
-    const s=data[0];
-    document.getElementById("maintenanceToggle").checked=s.maintenance_mode;
-    document.getElementById("pauseToggle").checked=s.game_paused;
-    document.getElementById("lockdownToggle").checked=s.emergency_lockdown;
-    document.getElementById("maintenanceMessage").value=s.maintenance_message;
-    setStatus("systemStatus","SYSTEM SETTINGS LOADED");
-  }catch(error){setStatus("systemStatus",error.message,true);}
-}
+  const {error}=await db.auth.signInWithPassword({
+    email:$('email').value.trim(),
+    password:$('pass').value
+  });
 
-async function saveSystemControl(){
-  if(!accessToken)return;
-  const maintenance=document.getElementById("maintenanceToggle").checked;
-  const paused=document.getElementById("pauseToggle").checked;
-  const lockdown=document.getElementById("lockdownToggle").checked;
-  const message=document.getElementById("maintenanceMessage").value.trim();
-  const button=document.getElementById("saveSystemBtn");
+  $('pass').value='';
 
-  if(message.length<5||message.length>500){
-    setStatus("systemStatus","MESSAGE MUST BE 5–500 CHARACTERS",true);
+  if(error){
+    $('authStatus').textContent=error.message;
     return;
   }
 
-  if(!confirm(
-    "CONFIRM SYSTEM SETTINGS\n\n"+
-    "Maintenance: "+(maintenance?"ON":"OFF")+"\n"+
-    "Game Paused: "+(paused?"ON":"OFF")+"\n"+
-    "Emergency Lockdown: "+(lockdown?"ON":"OFF")
-  ))return;
+  await verify();
+}
 
-  button.disabled=true;
-  setStatus("systemStatus","SAVING SYSTEM SETTINGS...");
+async function verify(){
+  const {data:{user}}=await db.auth.getUser();
 
-  try{
-    const response=await fetch(SUPABASE_URL+"/rest/v1/rpc/ffgc_update_system_control",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "apikey":SUPABASE_KEY,
-        "Authorization":"Bearer "+accessToken
-      },
-      body:JSON.stringify({
-        p_maintenance_mode:maintenance,
-        p_game_paused:paused,
-        p_emergency_lockdown:lockdown,
-        p_maintenance_message:message
-      })
-    });
-    const data=await response.json();
-    if(!response.ok||!data.success)throw Error(data.message||"UPDATE FAILED");
-    setStatus("systemStatus","SYSTEM SETTINGS SAVED SUCCESSFULLY");
-    await loadSystemControl();
-  }catch(error){setStatus("systemStatus",error.message,true);}
-  finally{button.disabled=false;}
+  if(!user){
+    $('panel').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    return;
+  }
+
+  const {data,error}=await db
+    .from('ffgc_admins')
+    .select('role')
+    .eq('user_id',user.id)
+    .eq('role','super_admin')
+    .maybeSingle();
+
+  if(error||!data){
+    await db.auth.signOut();
+    $('authStatus').textContent='Super-admin access required.';
+    $('panel').classList.add('hidden');
+    $('auth').classList.remove('hidden');
+    return;
+  }
+
+  $('auth').classList.add('hidden');
+  $('panel').classList.remove('hidden');
+
+  $('who').textContent=user.email+' • SUPER ADMIN';
+
+  await reloadAll();
+}
+
+async function signOut(){
+  await db.auth.signOut();
+  $('panel').classList.add('hidden');
+  $('auth').classList.remove('hidden');
+}
+
+async function master(action,data){
+  say('Saving…');
+
+  const {data:result,error}=await db.rpc('ffgc_master_action',{
+    p_action:action,
+    p_data:data
+  });
+
+  if(error){
+    say('ERROR: '+error.message);
+    return false;
+  }
+
+  if(result?.success===false){
+    say('ERROR: '+JSON.stringify(result));
+    return false;
+  }
+
+  say('✓ Saved successfully');
+  return true;
+}
+
+function clearNotice(){
+  $('noticeId').value='';
+  $('noticeTitle').value='';
+  $('noticeBody').value='';
+  $('noticePublished').checked=false;
+}
+
+async function saveNotice(){
+  const data={
+    title:$('noticeTitle').value.trim(),
+    body:$('noticeBody').value.trim(),
+    is_published:$('noticePublished').checked
+  };
+
+  if($('noticeId').value){
+    data.id=Number($('noticeId').value);
+  }
+
+  if(await master('save_notice',data)){
+    clearNotice();
+    await loadNotices();
+  }
+}
+
+async function loadNotices(){
+  const {data,error}=await db
+    .from('ffgc_announcements')
+    .select('*')
+    .order('created_at',{ascending:false});
+
+  if(error){
+    $('notices').textContent=error.message;
+    return;
+  }
+
+  notices=data||[];
+
+  $('notices').innerHTML=notices.map((n,i)=>`
+    <div class="item">
+      <b>${safe(n.title)}</b>
+      <small>${n.is_published?'🟢 PUBLISHED':'⚪ DRAFT'}</small>
+      <p>${safe(n.body)}</p>
+      <button class="secondary" onclick="editNotice(${i})">Edit</button>
+      <button class="danger" onclick="deleteNotice(${n.id})">Delete</button>
+    </div>
+  `).join('')||'<p class="muted">No announcements yet.</p>';
+}
+
+function editNotice(i){
+  const n=notices[i];
+
+  $('noticeId').value=n.id;
+  $('noticeTitle').value=n.title;
+  $('noticeBody').value=n.body;
+  $('noticePublished').checked=n.is_published;
+
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+async function deleteNotice(id){
+  if(confirm('Delete this announcement?')&&
+     await master('delete_notice',{id})){
+    await loadNotices();
+  }
+}
+
+function clearTask(){
+  $('taskId').value='';
+  $('taskTitle').value='';
+  $('taskDescription').value='';
+  $('taskStatus').value='draft';
+  $('taskStart').value='';
+  $('taskEnd').value='';
+}
+
+async function saveTask(){
+  const data={
+    title:$('taskTitle').value.trim(),
+    description:$('taskDescription').value.trim(),
+    status:$('taskStatus').value,
+    starts_at:$('taskStart').value
+      ?new Date($('taskStart').value).toISOString():null,
+    ends_at:$('taskEnd').value
+      ?new Date($('taskEnd').value).toISOString():null
+  };
+
+  if($('taskId').value){
+    data.id=Number($('taskId').value);
+  }
+
+  if(await master('save_task',data)){
+    clearTask();
+    await loadTasks();
+  }
+}
+
+async function loadTasks(){
+  const {data,error}=await db
+    .from('ffgc_tasks')
+    .select('*')
+    .order('created_at',{ascending:false});
+
+  if(error){
+    $('tasks').textContent=error.message;
+    return;
+  }
+
+  tasks=data||[];
+
+  $('tasks').innerHTML=tasks.map((t,i)=>`
+    <div class="item">
+      <b>${safe(t.title)}</b>
+      <small>${safe(t.status)}</small>
+      <p>${safe(t.description)}</p>
+      <button class="secondary" onclick="editTask(${i})">Edit</button>
+      <button class="danger" onclick="deleteTask(${t.id})">Delete</button>
+    </div>
+  `).join('')||'<p class="muted">No tasks yet.</p>';
+}
+
+function editTask(i){
+  const t=tasks[i];
+
+  $('taskId').value=t.id;
+  $('taskTitle').value=t.title;
+  $('taskDescription').value=t.description;
+  $('taskStatus').value=t.status;
+
+  $('taskStart').value=t.starts_at
+    ?new Date(t.starts_at).toISOString().slice(0,16):'';
+
+  $('taskEnd').value=t.ends_at
+    ?new Date(t.ends_at).toISOString().slice(0,16):'';
+}
+
+async function deleteTask(id){
+  if(confirm('Delete this task?')&&
+     await master('delete_task',{id})){
+    await loadTasks();
+  }
+}
+
+async function saveMission(){
+  const d={
+    p_team:$('missionTeam').value,
+    p_number:Number($('missionNumber').value),
+    p_title:$('missionTitle').value.trim(),
+    p_story:$('missionStory').value.trim(),
+    p_clue:$('missionClue').value.trim(),
+    p_answer:$('missionAnswer').value.trim(),
+    p_unlock_at:$('missionUnlock').value
+      ?new Date($('missionUnlock').value).toISOString():null
+  };
+
+  $('missionMsg').textContent='Saving…';
+
+  const {data,error}=await db.rpc('ffgc_admin_mission_save',d);
+
+  $('missionMsg').textContent=error
+    ?'ERROR: '+error.message
+    :data?.success
+      ?'✓ Mission saved. Team can refresh its mission.'
+      :JSON.stringify(data);
+
+  if(data?.success){
+    $('missionAnswer').value='';
+  }
+}
+
+async function saveBan(){
+  const id=Number($('banMember').value);
+
+  if(!id){
+    return say('Choose a member');
+  }
+
+  await master('set_member_ban',{
+    member_id:id,
+    is_banned:$('banEnabled').checked,
+    reason:$('banReason').value.trim()
+  });
+}
+
+const permissionKeys=[
+  'can_manage_points',
+  'can_manage_members',
+  'can_manage_tasks',
+  'can_manage_notices',
+  'can_manage_missions'
+];
+
+async function loadCoadmins(){
+  const {data,error}=await db
+    .from('ffgc_admins')
+    .select('user_id,role')
+    .eq('role','co_admin');
+
+  if(error){
+    say('Co-admin: '+error.message);
+    return;
+  }
+
+  $('coadminUser').replaceChildren();
+
+  for(const a of data||[]){
+    let o=document.createElement('option');
+    o.value=a.user_id;
+    o.textContent=a.user_id;
+    $('coadminUser').append(o);
+  }
+
+  $('permissionChecks').innerHTML=permissionKeys.map(k=>`
+    <label>
+      <input type="checkbox" id="${k}" style="width:auto">
+      ${k.replaceAll('_',' ')}
+    </label>
+  `).join('');
+
+  await loadPermissions();
+}
+
+async function loadPermissions(){
+  const uid=$('coadminUser').value;
+
+  if(!uid)return;
+
+  const {data,error}=await db
+    .from('ffgc_admin_permissions')
+    .select('*')
+    .eq('user_id',uid)
+    .maybeSingle();
+
+  if(error){
+    say(error.message);
+    return;
+  }
+
+  for(const k of permissionKeys){
+    $(k).checked=!!data?.[k];
+  }
+}
+
+async function savePermissions(){
+  const uid=$('coadminUser').value;
+
+  if(!uid){
+    return say('No existing co-admin found.');
+  }
+
+  const d={user_id:uid};
+
+  for(const k of permissionKeys){
+    d[k]=$(k).checked;
+  }
+
+  await master('set_coadmin_permissions',d);
 }
 
 async function loadMembers(){
-  if(!accessToken)return;
-  setStatus("leaderboardStatus","LOADING LIVE RANKINGS...");
-  try{
-    const response=await fetch(
-      SUPABASE_URL+"/rest/v1/ffgc_members?select=member_name,total_points,rank_name&order=total_points.desc,member_name.asc",
-      {headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+accessToken}}
-    );
-    if(!response.ok)throw Error("COULD NOT LOAD MEMBERS");
-    const data=await response.json();
-    membersData=data;
+  const {data,error}=await db
+    .from('ffgc_members')
+    .select('id,member_name,total_points,rank_name')
+    .order('total_points',{ascending:false});
 
-    const body=document.getElementById("leaderboardBody");
-    body.innerHTML="";
-    data.forEach((m,i)=>{
-      const row=document.createElement("tr");
-      [i+1,m.member_name,m.total_points,m.rank_name].forEach(value=>{
-        const td=document.createElement("td");
-        td.textContent=value;
-        row.appendChild(td);
-      });
-      body.appendChild(row);
-    });
+  if(!error){
+    $('banMember').replaceChildren();
 
-    document.getElementById("totalMembers").textContent=data.length;
-    document.getElementById("totalPoints").textContent=data.reduce((s,m)=>s+Number(m.total_points),0).toLocaleString();
-    document.getElementById("currentLeader").textContent=data.length?data[0].member_name:"—";
-
-    const select=document.getElementById("memberSelect");
-    const oldValue=select.value;
-    select.innerHTML='<option value="">-- SELECT MEMBER --</option>';
-    data.forEach(m=>{
-      const option=document.createElement("option");
-      option.value=m.member_name;
-      option.textContent=m.member_name;
-      select.appendChild(option);
-    });
-    if(data.some(m=>m.member_name===oldValue))select.value=oldValue;
-    updateSelectedScore();
-    setStatus("leaderboardStatus","LIVE RANKINGS LOADED");
-  }catch(error){setStatus("leaderboardStatus",error.message,true);}
-}
-
-function updateSelectedScore(){
-  const name=document.getElementById("memberSelect").value;
-  const member=membersData.find(m=>m.member_name===name);
-  document.getElementById("selectedScore").textContent=member?
-    "CURRENT POINTS: "+member.total_points:"Select a member to view current points.";
-}
-document.getElementById("memberSelect").addEventListener("change",updateSelectedScore);
-
-async function changePoints(type){
-  if(isUpdating||!accessToken)return;
-  const member=document.getElementById("memberSelect").value;
-  const amount=Number(document.getElementById("pointsAmount").value);
-  const reason=document.getElementById("pointsReason").value.trim();
-
-  if(!member){setStatus("pointsStatus","SELECT A MEMBER",true);return;}
-  if(!Number.isSafeInteger(amount)||amount<=0||amount>1000000){
-    setStatus("pointsStatus","ENTER VALID POINTS (1–1000000)",true);return;
-  }
-  if(!reason){setStatus("pointsStatus","REASON IS REQUIRED",true);return;}
-
-  const change=type==="add"?amount:-amount;
-  const current=membersData.find(m=>m.member_name===member);
-  if(!current){setStatus("pointsStatus","MEMBER NOT FOUND",true);return;}
-  if(Number(current.total_points)+change<0){
-    setStatus("pointsStatus","POINTS CANNOT BE NEGATIVE",true);return;
+    for(const m of data||[]){
+      let o=document.createElement('option');
+      o.value=m.id;
+      o.textContent=m.member_name;
+      $('banMember').append(o);
+    }
   }
 
-  if(!confirm(
-    "CONFIRM POINTS UPDATE\n\nMEMBER: "+member+
-    "\nCHANGE: "+(change>0?"+":"")+change+
-    "\nCURRENT: "+current.total_points+
-    "\nEXPECTED: "+(Number(current.total_points)+change)+
-    "\nREASON: "+reason
-  ))return;
+  $('members').innerHTML=error
+    ?safe(error.message)
+    :(data||[]).map((m,i)=>`
+      <div class="item">
+        ${i+1}.
+        <b>${safe(m.member_name)}</b>
+        — ${Number(m.total_points)||0} pts
+        <small>${safe(m.rank_name)}</small>
+      </div>
+    `).join('');
+}
 
-  isUpdating=true;
-  document.getElementById("addBtn").disabled=true;
-  document.getElementById("deductBtn").disabled=true;
-  setStatus("pointsStatus","UPDATING POINTS...");
+async function loadSettings(){
+  const {data,error}=await db
+    .from('ffgc_site_settings')
+    .select('setting_key,setting_value');
 
-  try{
-    const response=await fetch(SUPABASE_URL+"/rest/v1/rpc/ffgc_change_points",{
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json",
-        "apikey":SUPABASE_KEY,
-        "Authorization":"Bearer "+accessToken
-      },
-      body:JSON.stringify({
-        p_member_name:member,
-        p_points_change:change,
-        p_reason:reason
-      })
-    });
-    const data=await response.json();
-    if(!response.ok||!data.success)throw Error(data.message||"POINTS UPDATE FAILED");
+  if(error){
+    say(error.message);
+    return;
+  }
 
-    setStatus("pointsStatus",
-      "SUCCESS! "+member+": "+data.old_points+" → "+data.new_points+" POINTS"
-    );
-    document.getElementById("pointsAmount").value="";
-    document.getElementById("pointsReason").value="";
-    await loadMembers();
-  }catch(error){setStatus("pointsStatus",error.message,true);}
-  finally{
-    isUpdating=false;
-    document.getElementById("addBtn").disabled=false;
-    document.getElementById("deductBtn").disabled=false;
+  for(const s of data||[]){
+    if($(s.setting_key)){
+      $(s.setting_key).value=s.setting_value;
+    }
   }
 }
 
-async function adminLogout(){
-  const token=accessToken;
-  accessToken=null;
-  membersData=[];
-  document.getElementById("dashboard").classList.add("hidden");
-  document.getElementById("loginPanel").classList.remove("hidden");
-  document.getElementById("email").value="";
-  document.getElementById("password").value="";
-  document.getElementById("loginStatus").textContent="";
-  document.getElementById("leaderboardBody").innerHTML="";
-  document.getElementById("memberSelect").innerHTML='<option value="">-- SELECT MEMBER --</option>';
-
-  if(token){
-    try{
-      await fetch(SUPABASE_URL+"/auth/v1/logout",{
-        method:"POST",
-        headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer "+token}
-      });
-    }catch(e){}
+async function saveSettings(){
+  for(const key of [
+    'home_title',
+    'home_subtitle',
+    'blackout_intro'
+  ]){
+    if(!await master('set_setting',{
+      key,
+      value:$(key).value
+    })){
+      return;
+    }
   }
+
+  say('✓ All text settings saved');
 }
+
+async function loadAudit(){
+  const {data,error}=await db
+    .from('ffgc_audit_log')
+    .select('action,target,created_at')
+    .order('created_at',{ascending:false})
+    .limit(12);
+
+  $('audit').innerHTML=error
+    ?safe(error.message)
+    :(data||[]).map(x=>`
+      <div class="item">
+        <b>${safe(x.action)}</b>
+        — ${safe(x.target)}
+        <small>${safe(new Date(x.created_at).toLocaleString())}</small>
+      </div>
+    `).join('')||'No entries yet.';
+}
+
+async function reloadAll(){
+  say('Loading…');
+
+  await Promise.all([
+    loadNotices(),
+    loadTasks(),
+    loadMembers(),
+    loadSettings(),
+    loadAudit(),
+    loadCoadmins()
+  ]);
+
+  say('✓ Connected to Supabase');
+}
+
+$('coadminUser').addEventListener('change',loadPermissions);
+
+verify();
 </script>
+
 </body>
 </html>
