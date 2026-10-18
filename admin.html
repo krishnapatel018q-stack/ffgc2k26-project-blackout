@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FFGC2K26 | Private Control</title>
+
+<style>
+:root {
+  --bg:#04070d;
+  --card:#0b1421;
+  --line:#26384e;
+  --gold:#f6c96b;
+  --text:#f5f7ff;
+  --muted:#9ba9bc;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top,#20223d,transparent 45%),
+    var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  min-height:100vh;
+}
+header{
+  text-align:center;
+  padding:23px 12px;
+  border-bottom:1px solid var(--line);
+  color:var(--gold);
+  font-size:14px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+main{
+  max-width:850px;
+  margin:auto;
+  padding:22px 15px 60px;
+}
+h1{
+  color:var(--gold);
+  font-size:clamp(30px,8vw,52px);
+  text-align:center;
+  margin:15px 0;
+}
+h2{color:var(--gold);font-size:19px}
+p{line-height:1.6}
+.muted{color:var(--muted)}
+.center{text-align:center}
+.card{
+  background:linear-gradient(145deg,#111c2e,#080f1a);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:22px;
+  margin:16px 0;
+  box-shadow:0 15px 40px #0007;
+}
+label{
+  display:block;
+  margin:17px 0 7px;
+  color:var(--muted);
+  font-size:12px;
+}
+input{
+  width:100%;
+  padding:15px;
+  border:1px solid #40516c;
+  border-radius:9px;
+  background:#050b13;
+  color:white;
+  font-size:15px;
+}
+button{
+  background:var(--gold);
+  color:#17100a;
+  border:0;
+  border-radius:9px;
+  padding:14px 18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:disabled{opacity:.5}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;
+}
+.grid .card{margin:0}
+.hidden{display:none!important}
+.status{margin-top:15px;font-size:13px}
+.error{color:#ff8597}
+.success{color:#77f6bb}
+.badge{
+  display:inline-block;
+  padding:8px 12px;
+  border:1px solid #8d7139;
+  border-radius:20px;
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:1px;
+}
+footer{
+  text-align:center;
+  color:#718096;
+  padding:25px;
+  font-size:11px;
+}
+</style>
+</head>
+
+<body>
+
+<header>FFGC2K26 // RESTRICTED SYSTEM</header>
+
+<main>
+
+<div class="center">
+  <span class="badge">PRIVATE AUTHORIZATION REQUIRED</span>
+  <h1>GOD MODE</h1>
+  <p class="muted">THE ULTIMATE CONTROL SYSTEM</p>
+</div>
+
+<div id="loginPanel" class="card">
+  <h2>🔐 ADMIN AUTHENTICATION</h2>
+  <p class="muted">
+    Authorized personnel only.
+  </p>
+
+  <label>ADMIN EMAIL</label>
+  <input
+    type="email"
+    id="email"
+    placeholder="Enter your admin email"
+    autocomplete="username"
+  >
+
+  <label>ADMIN PASSWORD</label>
+  <input
+    type="password"
+    id="password"
+    placeholder="Enter your admin password"
+    autocomplete="current-password"
+  >
+
+  <br><br>
+
+  <button id="loginBtn" onclick="adminLogin()">
+    VERIFY AUTHORITY →
+  </button>
+
+  <div id="loginStatus" class="status"></div>
+</div>
+
+<div id="dashboard" class="hidden">
+
+  <div class="card center">
+    <span class="badge">SUPER ADMIN VERIFIED</span>
+    <h2>WELCOME, KRISHNA 👑</h2>
+    <p class="muted">
+      Your identity has been verified.
+    </p>
+    <button onclick="adminLogout()">SECURE LOGOUT</button>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>🏆 POINTS CONTROL</h2>
+      <p class="muted">
+        Manage member scores and automatic rankings.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+    <div class="card">
+      <h2>🎯 MISSION CONTROL</h2>
+      <p class="muted">
+        Create missions, unlock tasks and monitor progress.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+    <div class="card">
+      <h2>📢 ANNOUNCEMENTS</h2>
+      <p class="muted">
+        Publish official updates.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+    <div class="card">
+      <h2>👥 MEMBER CONTROL</h2>
+      <p class="muted">
+        Manage membership and game access.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+    <div class="card">
+      <h2>🛡️ CO-ADMIN CONTROL</h2>
+      <p class="muted">
+        Assign limited administrative permissions.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+    <div class="card">
+      <h2>⚡ SYSTEM CONTROL</h2>
+      <p class="muted">
+        Manage maintenance mode and game status.
+      </p>
+      <span class="badge">ACTIVATION PENDING</span>
+    </div>
+
+  </div>
+
+</div>
+
+</main>
+
+<footer>FFGC2K26 © 2026 // RESTRICTED ACCESS</footer>
+
+<script>
+
+const SUPABASE_URL =
+  "https://wxszhdjmvgkajrklfpwn.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_Y8vdV1iQcjqw-hbhkVx0Eg_5qXXzCv3";
+
+let accessToken = null;
+
+async function adminLogin() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  const status = document.getElementById("loginStatus");
+  const button = document.getElementById("loginBtn");
+
+  status.textContent = "";
+  status.className = "status";
+
+  if (!email || !password) {
+    status.textContent = "ENTER EMAIL AND PASSWORD";
+    status.classList.add("error");
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = "VERIFYING ADMIN CREDENTIALS...";
+
+  try {
+    const authResponse = await fetch(
+      SUPABASE_URL + "/auth/v1/token?grant_type=password",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY
+        },
+        body:JSON.stringify({email,password})
+      }
+    );
+
+    const authData = await authResponse.json();
+
+    if (!authResponse.ok || !authData.access_token) {
+      throw new Error("INVALID EMAIL OR PASSWORD");
+    }
+
+    const token = authData.access_token;
+
+    const roleResponse = await fetch(
+      SUPABASE_URL +
+      "/rest/v1/ffgc_admins?select=role&user_id=eq." +
+      encodeURIComponent(authData.user.id),
+      {
+        headers:{
+          "apikey":SUPABASE_KEY,
+          "Authorization":"Bearer " + token
+        }
+      }
+    );
+
+    if (!roleResponse.ok) {
+      throw new Error("ADMIN ROLE VERIFICATION FAILED");
+    }
+
+    const roles = await roleResponse.json();
+
+    if (
+      !Array.isArray(roles) ||
+      !roles.some(row => row.role === "super_admin")
+    ) {
+      throw new Error("SUPER ADMIN ACCESS REQUIRED");
+    }
+
+    accessToken = token;
+
+    document.getElementById("password").value = "";
+    document.getElementById("loginPanel")
+      .classList.add("hidden");
+
+    document.getElementById("dashboard")
+      .classList.remove("hidden");
+
+  } catch (error) {
+    status.textContent = error.message;
+    status.classList.add("error");
+  }
+
+  button.disabled = false;
+}
+
+function adminLogout() {
+  accessToken = null;
+
+  document.getElementById("dashboard")
+    .classList.add("hidden");
+
+  document.getElementById("loginPanel")
+    .classList.remove("hidden");
+
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("loginStatus").textContent = "";
+}
+
+</script>
+
+</body>
+</html>
